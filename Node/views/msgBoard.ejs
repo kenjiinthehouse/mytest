@@ -1,0 +1,105 @@
+<%- include('parts/html-head') %> <%- include('parts/navbar') %>
+
+<div class="cmtArea container">
+  <div class="cmtModule">
+    <div class="cmtModuleHead">
+      <h5 class="cmtTitle">留言</h5>
+      <span class="cmtCount">124</span>
+    </div>
+    <div class="writeBox">
+      <div class="writeBoxLogged">
+        <form>
+          <fieldset>
+            <legend>留下評論</legend>
+            <div>
+              <div class="userProfile">
+                <span class="userNickname">使用者暱稱:BigJohn</span>
+              </div>
+              <div class="writeCmt">
+                <textarea
+                  class="cmtTextarea"
+                  name="cmtTextarea"
+                  id="cmtTextarea"
+                  cols="30"
+                  rows="3"
+                  style="background-color: #6d4242"
+                ></textarea>
+                <label for="cmtTextarea" style="z-index: 10">請留下評論</label>
+              </div>
+              <div>
+                <button class="cmtSendBtn">送出評論</button>
+              </div>
+            </div>
+          </fieldset>
+        </form>
+      </div>
+    </div>
+    <div class="cmtSort">
+      <div class="cmtSortOption">
+        <ul class="cmtSortOptionList">
+          <li>依人氣排序<span>v</span></li>
+          <li>依發表新舊<span>v</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="cmtContainer">
+      <ul class="cmtList">
+        <li>
+          <div class="cmtBox">
+            <div class="cmtBoxArea">
+              <div class="cmtInfo">
+                <span class="cmtNickname">高橋一生</span>
+              </div>
+              <div class="cmtTextWrap">
+                <span class="cmtBoxContent"
+                  >霹靂卡霹霹拉拉 波波莉娜貝貝魯多</span
+                >
+              </div>
+              <div class="cmtInfoBase">
+                <span class="cmtInfoDate">2020/10/26</span>
+                <span class="cmtAccuseLink">檢舉</span>
+              </div>
+              <div class="cmtTools">
+                <a href="#"><h6>回應</h6></a>
+                <span class="cmtReplyCount">20則</span>
+                <div class="cmtToolsBtn">
+                  <a href=""><span>贊同</span><small>5566</small></a>
+                  <a href=""><span>不贊同</span><small>56</small></a>
+                </div>
+              </div>
+            </div>
+            <div class="cmtReply">
+              <ul class="cmtList">
+                <li>
+                  <div class="cmtBox">
+                    <span class="cmtReplyIco">>></span>
+                    <div class="cmtBoxArea">
+                      <div class="cmtInfo">
+                        <span class="cmtNickname">Kate</span>
+                      </div>
+                      <div class="cmtTextWrap">
+                        <span class="cmtBoxContent">魔幻舞台 我知道!</span>
+                      </div>
+                      <div class="cmtInfoBase">
+                        <span class="cmtInfoDate">2020/10/26</span>
+                        <span class="cmtAccuseLink">檢舉</span>
+                      </div>
+                      <div class="cmtTools">
+                        <div class="cmtToolsBtn">
+                          <a href=""><span>贊同</span><small>5566</small></a>
+                          <a href=""><span>不贊同</span><small>56</small></a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<%- include('parts/scripts') %> <%- include('parts/html-foot') %>
