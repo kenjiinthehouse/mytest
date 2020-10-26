@@ -73,7 +73,7 @@ app.use((req, res, next) => {
 
 //
 app.get("/", function (req, res) {
-  res.render("MessageBoard.ejs", { name: "Hanzawa" });
+  res.render("msgBoard.ejs", { name: "Hanzawa" });
   // pass a local variable to the view
   // res.render(view [, locals] [, callback])
 });
