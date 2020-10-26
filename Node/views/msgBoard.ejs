@@ -1,6 +1,6 @@
 <%- include('parts/html-head') %> <%- include('parts/navbar') %>
 
-<div class="cmtArea container mx-auto">
+<div class="cmtArea container mx-auto mt-5">
   <div class="cmtModule">
     <div class="cmtModuleHead row align-items-center">
       <h5 class="cmtTitle pr-2">留言</h5>
@@ -13,7 +13,9 @@
             <legend class="ghost">留下評論</legend>
             <div>
               <div class="userProfile">
-                <span class="userNickname">使用者暱稱:BigJohn</span>
+                <span class="userNickname" style="display: none"
+                  >使用者暱稱:BigJohn</span
+                >
               </div>
               <div class="writeCmt">
                 <textarea
@@ -27,23 +29,7 @@
               </div>
               <div class="cmtSendBox">
                 <button type="button" class="cmtSendBtn">
-                  <div class="cmtSendBtnSvg">
-                    <svg
-                      version="1.1"
-                      id="圖層_1"
-                      xmlns="http://www.w3.org/2000/svg"
-                      xmlns:xlink="http://www.w3.org/1999/xlink"
-                      x="0px"
-                      y="0px"
-                      viewBox="0 0 24 24"
-                      xml:space="preserve"
-                    >
-                      <path
-                        d="M12,2C6.5,2,2,6.5,2,12s4.5,10,10,10s10-4.5,10-10S17.5,2,12,2z M16,13h-3v3c0,0.5-0.4,1-1,1s-1-0.5-1-1v-3H8
-	c-0.6,0-1-0.4-1-1s0.4-1,1-1h3V8c0-0.6,0.4-1,1-1s1,0.4,1,1v3h3c0.5,0,1,0.4,1,1S16.5,13,16,13z"
-                      />
-                    </svg>
-                  </div>
+                  <span class="material-icons"> add_circle </span>
                 </button>
               </div>
             </div>
@@ -69,7 +55,7 @@
       <ul class="cmtList">
         <li>
           <div class="cmtBox">
-            <div class="cmtBoxArea" style="border: 1px solid black">
+            <div class="cmtBoxArea">
               <div class="cmtInfo">
                 <span class="cmtNickname">Joeman</span
                 ><span class="cmtInfoDate">2020/10/26</span>
@@ -82,15 +68,25 @@
               <div class="cmtTools d-flex align-items-center">
                 <div class="cmtToolsBtn mr-auto">
                   <a href="#"
-                    ><span>回應</span><span class="cmtReplyCount">(20)</span></a
+                    ><span class="pr-1">回應</span
+                    ><span class="cmtReplyCount pr-1">(20)</span
+                    ><span class="material-icons pr-3">
+                      keyboard_arrow_down
+                    </span></a
                   >
 
                   <span class="cmtAccuseLink">檢舉</span>
                 </div>
 
-                <div class="cmtToolsBtn">
-                  <a href=""><span>贊同</span><span>5566</span></a>
-                  <a href=""><span>不贊同</span><span>56</span></a>
+                <div class="cmtToolsBtn pr-2">
+                  <a href=""
+                    ><span class="material-icons pr-1"> thumb_up_alt </span
+                    ><span>5566</span></a
+                  >
+                  <a href=""
+                    ><span class="material-icons pr-1"> thumb_down_alt </span
+                    ><span>56</span></a
+                  >
                 </div>
               </div>
             </div>
@@ -98,22 +94,17 @@
             <div class="cmtReply">
               <ul class="cmtList">
                 <li class="d-flex no-gutters">
-                  <div
-                    class="cmtReplyIco d-flex justify-content-center mt-1 col-1"
-                  >
+                  <div class="cmtReplyIco d-flex justify-content-center col-1">
                     <img src="/img/return.svg" alt="" />
                   </div>
-                  <div
-                    class="cmtBoxArea col-11"
-                    style="border: 1px solid black"
-                  >
+                  <div class="cmtBoxReplyArea col-11">
                     <div class="cmtInfo">
-                      <span class="cmtNickname">Joeman</span
+                      <span class="cmtNickname">Scofield</span
                       ><span class="cmtInfoDate">2020/10/26</span>
                     </div>
                     <div class="cmtTextWrap">
                       <span class="cmtBoxContent"
-                        >感謝最自由的華語頻道讓我解開平常的束縛暢所欲言！</span
+                        >感覺你在這邊聊天比較像你自己，很開心</span
                       >
                     </div>
                     <div class="cmtTools d-flex align-items-center">
@@ -121,9 +112,17 @@
                         <span class="cmtAccuseLink">檢舉</span>
                       </div>
 
-                      <div class="cmtToolsBtn">
-                        <a href=""><span>贊同</span><span>5566</span></a>
-                        <a href=""><span>不贊同</span><span>56</span></a>
+                      <div class="cmtToolsBtn pr-2">
+                        <a href=""
+                          ><span class="material-icons pr-1">
+                            thumb_up_alt </span
+                          ><span>5566</span></a
+                        >
+                        <a href=""
+                          ><span class="material-icons pr-1">
+                            thumb_down_alt </span
+                          ><span>56</span></a
+                        >
                       </div>
                     </div>
                   </div>
