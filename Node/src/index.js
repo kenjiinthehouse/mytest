@@ -53,7 +53,7 @@ app.use(
   })
 );
 app.use((req, res, next) => {
-  res.locals.title = "TiTiTiTitle";
+  res.locals.title = "Soundar";
   res.locals.sess = req.session; //sess自己取的
 
   let auth = req.get("Authorization");
@@ -73,13 +73,16 @@ app.use((req, res, next) => {
 
 //
 app.get("/", function (req, res) {
-  res.render("msgBoard.ejs", { name: "Hanzawa" });
+  res.render("index.ejs", { name: "Hanzawa" });
   // pass a local variable to the view
   // res.render(view [, locals] [, callback])
 });
 
 
+// 留言板
 
+
+app.use("/msgBoard", require(__dirname + "/router/msgBoard"));
 
 
 
