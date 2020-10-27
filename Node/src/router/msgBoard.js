@@ -99,12 +99,15 @@ router.get('/api', async (req, res) => {
 router.get('/api/relpy', async (req, res) => {
   const replyCmtSql = `SELECT * FROM msgboard  WHERE parnentId != 0`;
   const [replyCmt] = await db.query(replyCmtSql);
-  replyCmt.forEach((sid)=>{
-    // output.sid === replyCmt.parnentId;
-    if (output.sid === replyCmt.parnentId) return;
-  }) 
+  // replyCmt.map((sid)=>{
+  //   // output.sid === replyCmt.parnentId;
+  //   if (output.sid === replyCmt.parnentId) return;
+  // }) 
+  let mapRelpyCmt = replyCmt.map(function(item,index,array){
+    return output.sid === replyCmt.parnentId
+  })
 
-   res.json(replyCmt);
+   res.json(mapRelpyCmt);
 
 
 
