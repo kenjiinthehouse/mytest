@@ -171,6 +171,7 @@ a:hover {
   background-size: contain;
   border-radius: 50%;
   background-image: url(http://0.gravatar.com/avatar/fa4df8540bab3cb38f7dfa60c6e0522c?size=2000);
+  /* background-image: url(/img/1-2.png); */
 }
 
 .cmtNickname {
@@ -240,4 +241,20 @@ a:hover {
 
 .cmtBoxReplyArea .cmtTools {
   padding-top: 0.938rem;
+}
+
+/* 回應按鈕 */
+
+.replyBtn {
+  padding-right: 1.25rem;
+  background-image: url(/img/arrow_drop_down-24px.svg);
+  background-position: right bottom;
+  background-repeat: no-repeat;
+}
+
+.replyBtnOn {
+  padding-right: 1.25rem;
+  background-image: url(/img/arrow_drop_up-24px.svg);
+  background-position: right bottom;
+  background-repeat: no-repeat;
 }
