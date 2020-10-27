@@ -1,5 +1,5 @@
 * {
-  font-family: "Noto Sans TC", "Roboto", sans-serif;
+  font-family: 'Noto Sans TC', 'Roboto', sans-serif;
   font-size: 16px;
   color: rgba(255, 255, 255, 0.87);
 }
@@ -41,7 +41,7 @@ a:hover {
 
 .cmtArea .cmtBoxArea {
   width: 100%;
-  height: 8.125rem;
+  /* min-height: 8.125rem; */
   border-bottom: 1px solid #909393;
 }
 
@@ -149,12 +149,28 @@ a:hover {
 }
 
 .cmtBoxArea .cmtInfo {
+  width: 100%;
+  /* height: 1.688rem; */
   padding-top: 1.375rem;
   padding-bottom: 0.938rem;
 }
 
-.cmtBoxArea .cmtTextWrap {
-  padding-bottom: 0.938rem;
+/* .cmtBoxArea .cmtTextWrap {
+  margin-bottom: 0.938rem;
+} */
+
+.cmtBoxArea .cmtTools {
+  padding-top: 0.938rem;
+}
+
+.userHeadIcon {
+  width: 1.5rem;
+  height: 1.5rem;
+  top: 50%;
+  left: 50%;
+  background-size: contain;
+  border-radius: 50%;
+  background-image: url(http://0.gravatar.com/avatar/fa4df8540bab3cb38f7dfa60c6e0522c?size=2000);
 }
 
 .cmtNickname {
@@ -164,7 +180,7 @@ a:hover {
   font-style: normal;
   line-height: 1.11;
   letter-spacing: normal;
-  padding-right: 2.438rem;
+  /* padding-right: 1rem; */
 }
 
 .cmtInfoDate {

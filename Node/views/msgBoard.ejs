@@ -13,6 +13,7 @@
             <legend class="ghost">留下評論</legend>
             <div>
               <div class="userProfile">
+                <span class="userId" style="display: none">使用者Id:xxxxx</span>
                 <span class="userNickname" style="display: none"
                   >使用者暱稱:BigJohn</span
                 >
@@ -55,15 +56,15 @@
       <ul class="cmtList">
         <li>
           <div class="cmtBox">
+            <% for(let i of rows){ %>
             <div class="cmtBoxArea">
-              <div class="cmtInfo">
-                <span class="cmtNickname">Joeman</span
-                ><span class="cmtInfoDate">2020/10/26</span>
+              <div class="cmtInfo d-flex align-items-center">
+                <div class="userHeadIcon mr-2"></div>
+                <div class="cmtNickname mr-auto"><%= i.nickname %></div>
+                <div class="cmtInfoDate"><%= i.postTime2 %></div>
               </div>
               <div class="cmtTextWrap">
-                <span class="cmtBoxContent"
-                  >感謝最自由的華語頻道讓我解開平常的束縛暢所欲言！</span
-                >
+                <span class="cmtBoxContent"><%= i.content %></span>
               </div>
               <div class="cmtTools d-flex align-items-center">
                 <div class="cmtToolsBtn mr-auto">
@@ -81,17 +82,17 @@
                 <div class="cmtToolsBtn pr-2">
                   <a href=""
                     ><span class="material-icons pr-1"> thumb_up_alt </span
-                    ><span>5566</span></a
+                    ><span><%= i.upPoint %></span></a
                   >
                   <a href=""
                     ><span class="material-icons pr-1"> thumb_down_alt </span
-                    ><span>56</span></a
+                    ><span><%= i.downPoint %></span></a
                   >
                 </div>
               </div>
             </div>
             <!-- 展開回應 -->
-            <div class="cmtReply" style="display: none">
+            <div class="cmtReply" style="">
               <ul class="cmtList">
                 <li class="d-flex no-gutters">
                   <div class="cmtReplyIco d-flex justify-content-center col-1">
@@ -129,6 +130,7 @@
                 </li>
               </ul>
             </div>
+            <% } %>
           </div>
         </li>
       </ul>

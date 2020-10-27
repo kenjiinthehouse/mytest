@@ -1,5 +1,4 @@
 const express = require("express");
-const moment = require("moment-timezone");
 const db = require("./../db_connect");
 const router = express.Router();
 
@@ -7,7 +6,7 @@ const router = express.Router();
 
 
 
-async function getMsgList(req) {
+router.get("/api", async (req, res) => {
   const output = {
     page: 0,
     perPage: 10,
@@ -15,6 +14,11 @@ async function getMsgList(req) {
     totalPage: 0,
     rows: [],
   };
+
+//   const [result1] = await db.query(
+//     "SELECT COUNT(1) totalRows FROM msgboard"
+//   );
+//   res.json(result1);
   const [[{ totalRows }]] = await db.query(
     "SELECT COUNT(1) totalRows FROM msgboard"
   );
@@ -35,28 +39,14 @@ async function getMsgList(req) {
     },${output.perPage}`;
 
     const [result2] = await db.query(sql);
-
-    result2.forEach((element) => {
-      element.postTime2 = moment(element.postTime).format("YYYY-MM-DD");
-    });
-
     output.rows = result2;
   }
 
-  return output;
-};
-
-router.get('/api', async (req, res) => {
-  res.json(await getMsgList(req));
+  res.json(output);
 });
 
-router.get('/', async (req, res) => {
-  const output = await getMsgList(req);
-  if (req.session.admin) {
-    res.render('msgBoard.ejs', output);
-  } else {
-    res.render('msgBoard.ejs', output);
-  }
+router.get("/", (req, res) => {
+  res.render("msgBoard.ejs");
 });
 
 module.exports = router;
