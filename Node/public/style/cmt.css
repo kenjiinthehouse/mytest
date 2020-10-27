@@ -229,7 +229,7 @@ a:hover {
 }
 
 .cmtBoxReplyArea {
-  height: 7.438rem;
+  /* height: 7.438rem; */
   border-bottom: 1px solid #909393;
 }
 
@@ -238,6 +238,6 @@ a:hover {
   padding-bottom: 0.938rem;
 }
 
-.cmtBoxReplyArea .cmtTextWrap {
-  padding-bottom: 0.938rem;
+.cmtBoxReplyArea .cmtTools {
+  padding-top: 0.938rem;
 }
