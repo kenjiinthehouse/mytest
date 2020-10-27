@@ -1,11 +1,7 @@
-const express = require("express");
-const moment = require("moment-timezone");
-const db = require("./../db_connect");
+const express = require('express');
+const moment = require('moment-timezone');
+const db = require('./../db_connect');
 const router = express.Router();
-
-
-
-
 
 async function getMsgList(req) {
   const output = {
@@ -14,9 +10,11 @@ async function getMsgList(req) {
     totalRows: 0,
     totalPage: 0,
     rows: [],
+    replyRows:[],
   };
+
   const [[{ totalRows }]] = await db.query(
-    "SELECT COUNT(1) totalRows FROM msgboard"
+    'SELECT COUNT(1) totalRows FROM msgboard'
   );
   if (totalRows > 0) {
     let page = parseInt(req.query.page) || 1;
@@ -34,17 +32,28 @@ async function getMsgList(req) {
       (output.page - 1) * output.perPage
     },${output.perPage}`;
 
+    let replyCmtSql = `SELECT * FROM msgboard  WHERE parnentId != 0`;
+
     const [result2] = await db.query(sql);
+    const [result3] = await db.query(replyCmtSql);
 
     result2.forEach((element) => {
-      element.postTime2 = moment(element.postTime).format("YYYY-MM-DD");
+      element.postTime2 = moment(element.postTime).format('YYYY-MM-DD');
     });
 
-    output.rows = result2;
-  }
+     result3.forEach((element) => {
+       element.postTime2 = moment(element.postTime).format('YYYY-MM-DD');
+     });
 
-  return output;
-};
+    output.rows = result2;
+    output.replyRows = result3;
+  }
+  if (output.rows.length !== 0) {
+    return output;
+  } else {
+   return '目前沒有留言';
+  }
+}
 
 router.get('/api', async (req, res) => {
   res.json(await getMsgList(req));
@@ -83,7 +92,6 @@ module.exports = router;
     修改  /del/:sid
         POST
  */
-
 
 /* RESTful API
     列表
