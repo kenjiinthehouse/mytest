@@ -1,11 +1,12 @@
 * {
   font-family: "Noto Sans TC", "Roboto", sans-serif;
   font-size: 16px;
+  color: rgba(255, 255, 255, 0.87);
 }
 
-/* body {
-  background-color: #5b5b5b;
-} */
+body {
+  background-color: #232d2f;
+}
 
 ul,
 li {
@@ -32,10 +33,16 @@ a:hover {
 }
 
 .cmtArea {
-  border: 1px solid black;
+  /* border: 1px solid black; */
   margin: 0px;
   padding: 0px;
   width: 35rem;
+}
+
+.cmtArea .cmtBoxArea {
+  width: 100%;
+  height: 8.125rem;
+  border-bottom: 1px solid #909393;
 }
 
 .cmtModule,
@@ -43,10 +50,10 @@ a:hover {
   margin: 0px;
   padding: 0px;
   width: 100%;
-  border: 1px solid black;
+  /* border: 1px solid black; */
 }
 .cmtModuleHead {
-  margin: 0px;
+  margin: 0px 0px 1.875rem 0px;
   padding: 0px;
   width: 100%;
   height: 2.5rem;
@@ -86,6 +93,7 @@ a:hover {
   border-radius: 5px;
   background-color: #909393;
   resize: none;
+  outline: none;
   border: none;
   position: relative;
 }
@@ -93,7 +101,7 @@ a:hover {
 .cmtSendBox {
   position: absolute;
   left: 31.69rem;
-  top: 3rem;
+  top: 1.7rem;
 }
 
 .cmtSendBtn {
@@ -101,25 +109,14 @@ a:hover {
   padding: 0px;
   width: 2.5rem;
   height: 2.5rem;
-  border: 0;
-  background-color: #909393;
+  border: 0px;
+  background-color: #ffffff;
   border-radius: 50%;
 }
 
-.cmtSendBtnSvg {
-  width: 100%;
-  height: 100%;
-}
-
-.cmtSendBtnSvg svg {
-  width: 100%;
-  height: 100%;
-  fill: #5b5b5b;
-}
-
-.cmtSendBtnSvg svg path {
-  width: 100%;
-  height: 100%;
+.cmtSendBtn .material-icons {
+  font-size: 2.5rem;
+  color: #5b5b5b;
 }
 
 .writeCmt label {
@@ -151,6 +148,15 @@ a:hover {
   font-style: normal;
 }
 
+.cmtBoxArea .cmtInfo {
+  padding-top: 1.375rem;
+  padding-bottom: 0.938rem;
+}
+
+.cmtBoxArea .cmtTextWrap {
+  padding-bottom: 0.938rem;
+}
+
 .cmtNickname {
   font-size: 1.125rem;
   font-weight: normal;
@@ -169,8 +175,8 @@ a:hover {
   line-height: 1.67;
   letter-spacing: normal;
   text-align: left;
-  /* color: rgba(255, 255, 255, 0.87); */
-  color: rgba(0, 0, 0, 0.87);
+  color: rgba(255, 255, 255, 0.5);
+  /* color: rgba(0, 0, 0, 0.87); */
 }
 
 .cmtBoxContent {
@@ -193,13 +199,9 @@ a:hover {
   text-align: left;
 }
 
-/* .cmtReply .cmtList li .cmtBoxArea {
- 
-} */
-
-/* .cmtReplyIco {
-  width: 5%;
-}  */
+.cmtReplyIco {
+  padding-top: 1.2rem;
+}
 
 .cmtReplyIco img {
   width: 1.187rem;
@@ -208,4 +210,18 @@ a:hover {
 
 .cmtReply {
   width: 100%;
+}
+
+.cmtBoxReplyArea {
+  height: 7.438rem;
+  border-bottom: 1px solid #909393;
+}
+
+.cmtBoxReplyArea .cmtInfo {
+  padding-top: 0.938rem;
+  padding-bottom: 0.938rem;
+}
+
+.cmtBoxReplyArea .cmtTextWrap {
+  padding-bottom: 0.938rem;
 }
