@@ -68,7 +68,11 @@
               </div>
               <div class="cmtTools d-flex align-items-center">
                 <div class="cmtToolsBtn mr-auto">
-                  <a href="#" class="replyBtn"
+                  <a
+                    href="#"
+                    class="replyBtn"
+                    data-toggle="collapse"
+                    data-target="#<%= i.nickname %>"
                     ><span class="pr-1">回應</span
                     ><span class="cmtReplyCount">(20)</span>
                     <!-- <span class="replyBtn"><img src="/img/arrow_drop_down-24px.svg"></span> -->
@@ -89,7 +93,7 @@
               </div>
             </div>
             <!-- 展開回應 -->
-            <div class="cmtReply" style="display: none">
+            <div class="cmtReply collapse" id="<%= i.nickname %>">
               <ul class="cmtList">
                 <li class="d-flex no-gutters">
                   <div class="cmtReplyIco d-flex justify-content-center col-1">
