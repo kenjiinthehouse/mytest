@@ -60,6 +60,7 @@
             <div class="cmtBoxArea">
               <div class="cmtInfo d-flex align-items-center">
                 <div class="userHeadIcon mr-2"></div>
+                <div class="cmtSid" style="display: none"><%= i.sid %></div>
                 <div class="cmtNickname mr-auto"><%= i.nickname %></div>
                 <div class="cmtInfoDate"><%= i.postTime2 %></div>
               </div>
@@ -95,41 +96,48 @@
             <!-- 展開回應 -->
             <div class="cmtReply collapse" id="<%= i.nickname %>">
               <ul class="cmtList">
-                <li class="d-flex no-gutters">
-                  <div class="cmtReplyIco d-flex justify-content-center col-1">
-                    <img src="/img/return.svg" alt="" />
-                  </div>
-                  <div class="cmtBoxReplyArea col-11">
-                    <div class="cmtInfo d-flex align-items-center">
-                      <div class="userHeadIcon mr-2"></div>
-                      <div class="cmtNickname mr-auto">小叮噹</div>
-                      <div class="cmtInfoDate">2030/05/05</div>
+                <% for(let j of replyRows){ %>
+                <li>
+                  <div class="d-flex no-gutters">
+                    <div
+                      class="cmtReplyIco d-flex justify-content-center col-1"
+                    >
+                      <img src="/img/return.svg" alt="" />
                     </div>
-                    <div class="cmtTextWrap">
-                      <span class="cmtBoxContent"
-                        >感覺你在這邊聊天比較像你自己，很開心感覺你在這邊聊天比較像你自己，很開心感覺你在這邊聊天比較像你自己，很開心感覺你在這邊聊天比較像你自己，很開心感覺你在這邊聊天比較像你自己，很開心感覺你在這邊聊天比較像你自己</span
-                      >
-                    </div>
-                    <div class="cmtTools d-flex align-items-center">
-                      <div class="cmtToolsBtn mr-auto">
-                        <span class="cmtAccuseLink">檢舉</span>
+                    <div class="cmtBoxReplyArea col-11">
+                      <div class="cmtInfo d-flex align-items-center">
+                        <div class="userHeadIcon mr-2"></div>
+                        <div class="cmtSid" style="display: none">
+                          <%= j.sid %>
+                        </div>
+                        <div class="cmtNickname mr-auto"><%= j.nickname %></div>
+                        <div class="cmtInfoDate"><%= j.postTime2 %></div>
                       </div>
+                      <div class="cmtTextWrap">
+                        <span class="cmtBoxContent"><%= j.content %></span>
+                      </div>
+                      <div class="cmtTools d-flex align-items-center">
+                        <div class="cmtToolsBtn mr-auto">
+                          <span class="cmtAccuseLink">檢舉</span>
+                        </div>
 
-                      <div class="cmtToolsBtn pr-2">
-                        <a href=""
-                          ><span class="material-icons pr-1">
-                            thumb_up_alt </span
-                          ><span>5566</span></a
-                        >
-                        <a href=""
-                          ><span class="material-icons pr-1">
-                            thumb_down_alt </span
-                          ><span>56</span></a
-                        >
+                        <div class="cmtToolsBtn pr-2">
+                          <a href=""
+                            ><span class="material-icons pr-1">
+                              thumb_up_alt </span
+                            ><span><%= j.upPoint %></span></a
+                          >
+                          <a href=""
+                            ><span class="material-icons pr-1">
+                              thumb_down_alt </span
+                            ><span><%= i.downPoint %></span></a
+                          >
+                        </div>
                       </div>
                     </div>
                   </div>
                 </li>
+                <% } %>
               </ul>
             </div>
             <% } %>
