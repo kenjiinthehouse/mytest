@@ -36,7 +36,7 @@ async function getMsgList(req) {
     let replyCmtSql = `SELECT * FROM msgboard  WHERE parentId = 22 `;
 
     const [sqlResult] = await db.query(sql);
-    
+
     const [result3] = await db.query(replyCmtSql);
 
     sqlResult.forEach((element) => {
@@ -68,53 +68,70 @@ const replyCmtOutput = {
 };
 
 async function getReplyList(req) {
-  const [
-    [{ rCmtTotalRows }],
-  ] = await db.query(
-    'SELECT COUNT(1) replyTotalRows FROM msgboard WHERE parentId = ?',
-    [req.params.sid]
-  );
-  console.log(rCmtTotalRows);
-  if (rCmtTotalRows > 0) {
-    let rCmtPage = parseInt(req.query.rCmtPage) || 1;
-    replyCmtOutput.rCmtTotalRows = rCmtTotalRows;
-    replyCmtOutput.rCmtTotalPage = Math.ceil(
-      rCmtTotalRows / replyCmtOutput.rCmtPerPage
-    );
-    if (rCmtPage < 1) {
-      replyCmtOutput.rCmtPage = 1;
-    } else if (rCmtPage > replyCmtOutput.rCmtTotalPage) {
-      replyCmtOutput.rCmtPage = replyCmtOutput.rCmtTotalPage;
-    } else {
-      replyCmtOutput.rCmtPage = rCmtPage;
-    }
+  // let replyCmtSql = `SELECT * FROM msgboard WHERE parentId = ? ORDER BY sid DESC LIMIT ${
+  //   (replyCmtOutput.rCmtPage - 1) * replyCmtOutput.rCmtPage
+  // },${replyCmtOutput.rCmtPage}`;
 
-    // let replyCmtSql = `SELECT * FROM msgboard WHERE parentId = ? ORDER BY sid DESC LIMIT ${
-    //   (replyCmtOutput.rCmtPage - 1) * replyCmtOutput.rCmtPage
-    // },${replyCmtOutput.rCmtPage}`;
+  let replyCmtSql = `SELECT * FROM msgboard WHERE parentId = ?`;
 
-    let replyCmtSql = `SELECT * FROM msgboard WHERE parentId = ?`;
+  const [replySqlResult] = await db.query(replyCmtSql, [req.params.sid]);
 
+  replySqlResult.forEach((element) => {
+    element.postTime2 = moment(element.postTime).format('YYYY-MM-DD');
+  });
 
-    const [replySqlResult] = await db.query(replyCmtSql, [req.params.sid]);
-
-    replySqlResult.forEach((element) => {
-      element.postTime2 = moment(element.postTime).format('YYYY-MM-DD');
-    });
-
-    replyCmtOutput.replyCmtRows = replySqlResult;
-    
-    
-  }
-
-
-
+  replyCmtOutput.replyCmtRows = replySqlResult;
   if (replyCmtOutput.replyCmtRows.length !== 0) {
     return replyCmtOutput;
   } else {
     return '目前沒有回應的留言5555';
   }
 }
+
+// TODO:這邊有問題 
+// async function getReplyList(req) {
+//   const [
+//     [{ rCmtTotalRows }],
+//   ] = await db.query(
+//     'SELECT COUNT(1) replyTotalRows FROM msgboard WHERE parentId = ?',
+//     [req.params.sid]
+//   );
+//   console.log(rCmtTotalRows);
+//   if (rCmtTotalRows > 0) {
+//     let rCmtPage = parseInt(req.query.rCmtPage) || 1;
+//     replyCmtOutput.rCmtTotalRows = rCmtTotalRows;
+//     replyCmtOutput.rCmtTotalPage = Math.ceil(
+//       rCmtTotalRows / replyCmtOutput.rCmtPerPage
+//     );
+//     if (rCmtPage < 1) {
+//       replyCmtOutput.rCmtPage = 1;
+//     } else if (rCmtPage > replyCmtOutput.rCmtTotalPage) {
+//       replyCmtOutput.rCmtPage = replyCmtOutput.rCmtTotalPage;
+//     } else {
+//       replyCmtOutput.rCmtPage = rCmtPage;
+//     }
+
+//     // let replyCmtSql = `SELECT * FROM msgboard WHERE parentId = ? ORDER BY sid DESC LIMIT ${
+//     //   (replyCmtOutput.rCmtPage - 1) * replyCmtOutput.rCmtPage
+//     // },${replyCmtOutput.rCmtPage}`;
+
+//     let replyCmtSql = `SELECT * FROM msgboard WHERE parentId = ?`;
+
+//     const [replySqlResult] = await db.query(replyCmtSql, [req.params.sid]);
+
+//     replySqlResult.forEach((element) => {
+//       element.postTime2 = moment(element.postTime).format('YYYY-MM-DD');
+//     });
+
+//     replyCmtOutput.replyCmtRows = replySqlResult;
+//   }
+
+//   if (replyCmtOutput.replyCmtRows.length !== 0) {
+//     return replyCmtOutput;
+//   } else {
+//     return '目前沒有回應的留言5555';
+//   }
+// }
 
 // 輸出全部主留言  //session還未實現
 router.get('/', async (req, res) => {
@@ -126,9 +143,9 @@ router.get('/', async (req, res) => {
   }
 });
 
-router.get('/reply/:sid');
+
 // http://localhost:7788/address-book/edit/139
-router.get('/reply/:sid',async(req, res) => {
+router.get('/reply/:sid', async (req, res) => {
   res.json(await getReplyList(req));
 });
 
@@ -148,9 +165,6 @@ router.get('/api', async (req, res) => {
 //     }
 //   })
 // });
-
-
-
 
 module.exports = router;
 
