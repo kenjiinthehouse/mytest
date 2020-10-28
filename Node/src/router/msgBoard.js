@@ -4,6 +4,7 @@ const moment = require('moment-timezone');
 const db = require('./../db_connect');
 const router = express.Router();
 
+//取得資料庫裡全部主留言
 const output = {
   page: 0,
   perPage: 10,
@@ -11,13 +12,12 @@ const output = {
   totalPage: 0,
   rows: [],
   replyRows: [],
-  replyCount: [],
 };
-
 async function getMsgList(req) {
   const [[{ totalRows }]] = await db.query(
     'SELECT COUNT(1) totalRows FROM msgboard'
   );
+  // console.log(totalRows)
   if (totalRows > 0) {
     let page = parseInt(req.query.page) || 1;
     output.totalRows = totalRows;
@@ -30,22 +30,23 @@ async function getMsgList(req) {
       output.page = page;
     }
 
-    let sql = `SELECT * FROM msgboard WHERE parnentId = 0 ORDER BY sid DESC LIMIT ${
+    let sql = `SELECT * FROM msgboard WHERE parentId = 0 ORDER BY sid DESC LIMIT ${
       (output.page - 1) * output.perPage
     },${output.perPage}`;
-    let replyCmtSql = `SELECT * FROM msgboard  WHERE parnentId = 22 `;
+    let replyCmtSql = `SELECT * FROM msgboard  WHERE parentId = 22 `;
 
-    const [result2] = await db.query(sql);
+    const [sqlResult] = await db.query(sql);
+    
     const [result3] = await db.query(replyCmtSql);
 
-    result2.forEach((element) => {
+    sqlResult.forEach((element) => {
       element.postTime2 = moment(element.postTime).format('YYYY-MM-DD');
     });
     result3.forEach((element) => {
       element.postTime2 = moment(element.postTime).format('YYYY-MM-DD');
     });
-    
-    output.rows = result2;
+
+    output.rows = sqlResult;
     output.replyRows = result3;
   }
 
@@ -57,6 +58,65 @@ async function getMsgList(req) {
   }
 }
 
+//根據前端送來的sid搜尋比對資料庫裡附隨主留言的留言 sid = parentId
+const replyCmtOutput = {
+  rCmtPage: 0, // 回應元件的頁數
+  rCmtPerPage: 10, //回應元件每頁幾筆留言
+  rCmtTotalRows: 0, //回應元件共有幾筆留言
+  rCmtTotalPage: 0, //回應元件共有幾頁
+  replyCmtRows: [], //回應
+};
+
+async function getReplyList(req) {
+  const [
+    [{ rCmtTotalRows }],
+  ] = await db.query(
+    'SELECT COUNT(1) replyTotalRows FROM msgboard WHERE parentId = ?',
+    [req.params.sid]
+  );
+  console.log(rCmtTotalRows);
+  if (rCmtTotalRows > 0) {
+    let rCmtPage = parseInt(req.query.rCmtPage) || 1;
+    replyCmtOutput.rCmtTotalRows = rCmtTotalRows;
+    replyCmtOutput.rCmtTotalPage = Math.ceil(
+      rCmtTotalRows / replyCmtOutput.rCmtPerPage
+    );
+    if (rCmtPage < 1) {
+      replyCmtOutput.rCmtPage = 1;
+    } else if (rCmtPage > replyCmtOutput.rCmtTotalPage) {
+      replyCmtOutput.rCmtPage = replyCmtOutput.rCmtTotalPage;
+    } else {
+      replyCmtOutput.rCmtPage = rCmtPage;
+    }
+
+    // let replyCmtSql = `SELECT * FROM msgboard WHERE parentId = ? ORDER BY sid DESC LIMIT ${
+    //   (replyCmtOutput.rCmtPage - 1) * replyCmtOutput.rCmtPage
+    // },${replyCmtOutput.rCmtPage}`;
+
+    let replyCmtSql = `SELECT * FROM msgboard WHERE parentId = ?`;
+
+
+    const [replySqlResult] = await db.query(replyCmtSql, [req.params.sid]);
+
+    replySqlResult.forEach((element) => {
+      element.postTime2 = moment(element.postTime).format('YYYY-MM-DD');
+    });
+
+    replyCmtOutput.replyCmtRows = replySqlResult;
+    
+    
+  }
+
+
+
+  if (replyCmtOutput.replyCmtRows.length !== 0) {
+    return replyCmtOutput;
+  } else {
+    return '目前沒有回應的留言5555';
+  }
+}
+
+// 輸出全部主留言  //session還未實現
 router.get('/', async (req, res) => {
   const output = await getMsgList(req);
   if (req.session.admin) {
@@ -66,8 +126,15 @@ router.get('/', async (req, res) => {
   }
 });
 
+router.get('/reply/:sid');
+// http://localhost:7788/address-book/edit/139
+router.get('/reply/:sid',async(req, res) => {
+  res.json(await getReplyList(req));
+});
+
 router.get('/api', async (req, res) => {
   res.json(await getMsgList(req));
+  // res.json(sqlResult);
 });
 
 // //當 url 是 /post/:id 時, 取得某一筆資料
@@ -82,27 +149,8 @@ router.get('/api', async (req, res) => {
 //   })
 // });
 
-// router.delete('/del/:sid', async (req, res) => {
-//   const sql = 'DELETE FROM `address_book` WHERE sid=?';
-//   const [results] = await db.query(sql, [req.params.sid]);
 
-//   res.json(results);
-// });
-// router.get('/api/relpy', async (req, res) => {
-//   const replyCmtSql = `SELECT * FROM msgboard  WHERE parnentId != 0`;
-//   const [replyCmt] = await db.query(replyCmtSql);
-//   // replyCmt.map((sid)=>{
-//   //   // output.sid === replyCmt.parnentId;
-//   //   if (output.sid === replyCmt.parnentId) return;
-//   // })
-//   let mapRelpyCmt = replyCmt.map(function(item,index,array){
-//     return output.sid === replyCmt.parnentId
-//   })
 
-//    res.json(mapRelpyCmt);
-
-// res.render('msgBoard.ejs', outputRelpy);
-// });
 
 module.exports = router;
 
