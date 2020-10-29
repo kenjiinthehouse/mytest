@@ -1,25 +1,30 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+// 基本元件
+// import logo from './logo.svg';
+import MyNavbar from './components/MyNavbar';
+import MyFooter from './components/MyFooter';
+import MainContent from './components/MainContent';
+// 使用 react router 管理
+import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
+// 測試用元件
+import Counter2 from './pages/Counter2';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <>
+        <MyNavbar />
+        <MainContent>
+          <Switch>
+            {/* 注意：要加上網址參數 */}
+            <Route exact path="/">
+              <Counter2 />
+            </Route>
+          </Switch>
+        </MainContent>
+        <MyFooter />
+      </>
+    </Router>
   );
 }
 
