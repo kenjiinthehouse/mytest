@@ -1,0 +1,36 @@
+ `<div class="d-flex no-gutters">
+                    <div
+                      class="cmtReplyIco d-flex justify-content-center col-1"
+                    >
+                      <img src="/img/return.svg" alt="" />
+                    </div>
+                    <div class="cmtBoxReplyArea col-11">
+                      <div class="cmtInfo d-flex align-items-center">
+                        <div class="userHeadIcon mr-2"></div>
+                        <div class="replycmtSid"></div>
+                        <div class="cmtNickname mr-auto">${reply[i].nickname}</div>
+                        <div class="cmtInfoDate"><${reply[i].postTime2}</div>
+                      </div>
+                      <div class="cmtTextWrap">
+                        <span class="cmtBoxContent">${reply[i].content}</span>
+                      </div>
+                      <div class="cmtTools d-flex align-items-center">
+                        <div class="cmtToolsBtn mr-auto">
+                          <span class="cmtAccuseLink">檢舉</span>
+                        </div>
+
+                        <div class="cmtToolsBtn pr-2">
+                          <a href=""
+                            ><span class="material-icons pr-1">
+                              thumb_up_alt </span
+                            ><span>${reply[i].upPoint}</span></a
+                          >
+                          <a href=""
+                            ><span class="material-icons pr-1">
+                              thumb_down_alt </span
+                            ><span>${reply[i].downPoint}</span></a
+                          >
+                        </div>
+                      </div>
+                    </div>
+                  </div>`;
