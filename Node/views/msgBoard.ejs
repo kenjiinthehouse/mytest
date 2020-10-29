@@ -69,15 +69,16 @@
               </div>
               <div class="cmtTools d-flex align-items-center">
                 <div class="cmtToolsBtn mr-auto">
-                  <a
-                    href="#"
+                  <div
                     class="replyBtn"
-                    data-toggle="collapse"
+                    data-sid="<%= i.sid %>"
+                    data-toggle="collaps"
                     data-target="#<%= i.nickname %>"
-                    ><span class="pr-1">回應</span
+                  >
+                    <span class="pr-1">回應</span
                     ><span class="cmtReplyCount">(20)</span>
                     <!-- <span class="replyBtn"><img src="/img/arrow_drop_down-24px.svg"></span> -->
-                  </a>
+                  </div>
                 </div>
 
                 <div class="cmtToolsBtn pr-2">
@@ -148,4 +149,22 @@
   </div>
 </div>
 
-<%- include('parts/scripts') %> <%- include('parts/html-foot') %>
+<%- include('parts/scripts') %>
+
+<script>
+  $('.replyBtn').on('click', function () {
+    // console.log('hi');
+    const sid = $(this).attr('data-sid');
+
+    fetch('/msgBoard/reply/' + sid, {
+      method: 'GET',
+    })
+      .then((r) => r.json())
+      .then((obj) => {
+        console.log(obj);
+        // location.reload(); //刷新頁面
+      });
+  });
+</script>
+
+<%- include('parts/html-foot') %>
