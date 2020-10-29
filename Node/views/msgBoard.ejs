@@ -97,7 +97,7 @@
             <!-- 展開回應 -->
             <div class="cmtReply collapse" id="<%= i.nickname %>">
               <ul class="cmtList">
-                <li class="replyList"></li>
+                <li class="replyList <%= i.sid %>"></li>
               </ul>
             </div>
             <% } %>
@@ -120,11 +120,12 @@
     })
       .then((r) => r.json())
       .then((obj) => {
-        // console.log(obj);
         let reply = obj.replyCmtRows;
-        let display = function display() {
+        // console.log(reply);
+        let display = '';
+        function makeDisplay() {
           for (i = 0; i < reply.length; i++) {
-            `<div class="d-flex no-gutters">
+            display += `<div class="d-flex no-gutters">
                     <div
                       class="cmtReplyIco d-flex justify-content-center col-1"
                     >
@@ -134,11 +135,11 @@
                       <div class="cmtInfo d-flex align-items-center">
                         <div class="userHeadIcon mr-2"></div>
                         <div class="replycmtSid"></div>
-                        <div class="cmtNickname mr-auto">${reply.nickname}</div>
-                        <div class="cmtInfoDate"><${reply.postTime2}</div>
+                        <div class="cmtNickname mr-auto">${reply[i].nickname}</div>
+                        <div class="cmtInfoDate">${reply[i].postTime2}</div>
                       </div>
                       <div class="cmtTextWrap">
-                        <span class="cmtBoxContent">${reply.content}</span>
+                        <span class="cmtBoxContent">${reply[i].content}</span>
                       </div>
                       <div class="cmtTools d-flex align-items-center">
                         <div class="cmtToolsBtn mr-auto">
@@ -149,20 +150,28 @@
                           <a href=""
                             ><span class="material-icons pr-1">
                               thumb_up_alt </span
-                            ><span>${reply.upPoint}</span></a
+                            ><span>${reply[i].upPoint}</span></a
                           >
                           <a href=""
                             ><span class="material-icons pr-1">
                               thumb_down_alt </span
-                            ><span>${reply.downPoint}</span></a
+                            ><span>${reply[i].downPoint}</span></a
                           >
                         </div>
                       </div>
                     </div>
                   </div>`;
           }
-        };
-        $('.replyList').html(123);
+        }
+
+        if (typeof obj === 'string') {
+          display = '<div>目前沒有回應的留言</div>';
+        } else {
+          makeDisplay();
+        }
+
+        // console.log(display);
+        $('.replyList').html(display);
       })
       .catch((error) => console.error('Error:', error));
   });
