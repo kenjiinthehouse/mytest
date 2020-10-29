@@ -1,0 +1,37 @@
+// Import Bootstrap and its default variables
+// 預設變數覆蓋需要在導入Bootstrap之前
+$primary: #4f726c;
+$secondary: #131010;
+$myBtm: #405b55;
+// Import Bootstrap and its default variables
+@import '~bootstrap/scss/bootstrap.scss';
+// 其它要導入覆蓋掉原本的預設bootstrap樣式要放在這下面
+main > .container {
+  padding: 60px 15px 0;
+}
+
+.footer {
+  background-color: #f5f5f5;
+}
+
+.logo {
+  height: 2rem;
+}
+
+.override {
+  display: block;
+  margin: 0 auto;
+  width: 200px;
+  height: 200px;
+  border-color: red;
+}
+
+.btn-success {
+  background-color: $myBtm;
+}
+
+.textbox {
+  width: 300px;
+  height: 500px;
+  background-color: $primary;
+}
