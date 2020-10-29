@@ -72,7 +72,7 @@
                   <div
                     class="replyBtn"
                     data-sid="<%= i.sid %>"
-                    data-toggle="collaps"
+                    data-toggle="collapse"
                     data-target="#<%= i.nickname %>"
                   >
                     <span class="pr-1">回應</span
@@ -108,9 +108,7 @@
                     <div class="cmtBoxReplyArea col-11">
                       <div class="cmtInfo d-flex align-items-center">
                         <div class="userHeadIcon mr-2"></div>
-                        <div class="cmtSid" style="display: none">
-                          <%= j.sid %>
-                        </div>
+                        <div class="replycmtSid"></div>
                         <div class="cmtNickname mr-auto"><%= j.nickname %></div>
                         <div class="cmtInfoDate"><%= j.postTime2 %></div>
                       </div>
@@ -162,8 +160,8 @@
       .then((r) => r.json())
       .then((obj) => {
         console.log(obj);
-        // location.reload(); //刷新頁面
-      });
+      })
+      .catch((error) => console.error('Error:', error));
   });
 </script>
 
