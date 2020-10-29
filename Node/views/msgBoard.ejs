@@ -72,7 +72,7 @@
                   <div
                     class="replyBtn"
                     data-sid="<%= i.sid %>"
-                    data-toggle="collaps"
+                    data-toggle="collapse"
                     data-target="#<%= i.nickname %>"
                   >
                     <span class="pr-1">回應</span
@@ -97,48 +97,7 @@
             <!-- 展開回應 -->
             <div class="cmtReply collapse" id="<%= i.nickname %>">
               <ul class="cmtList">
-                <% for(let j of replyRows){ %>
-                <li>
-                  <div class="d-flex no-gutters">
-                    <div
-                      class="cmtReplyIco d-flex justify-content-center col-1"
-                    >
-                      <img src="/img/return.svg" alt="" />
-                    </div>
-                    <div class="cmtBoxReplyArea col-11">
-                      <div class="cmtInfo d-flex align-items-center">
-                        <div class="userHeadIcon mr-2"></div>
-                        <div class="cmtSid" style="display: none">
-                          <%= j.sid %>
-                        </div>
-                        <div class="cmtNickname mr-auto"><%= j.nickname %></div>
-                        <div class="cmtInfoDate"><%= j.postTime2 %></div>
-                      </div>
-                      <div class="cmtTextWrap">
-                        <span class="cmtBoxContent"><%= j.content %></span>
-                      </div>
-                      <div class="cmtTools d-flex align-items-center">
-                        <div class="cmtToolsBtn mr-auto">
-                          <span class="cmtAccuseLink">檢舉</span>
-                        </div>
-
-                        <div class="cmtToolsBtn pr-2">
-                          <a href=""
-                            ><span class="material-icons pr-1">
-                              thumb_up_alt </span
-                            ><span><%= j.upPoint %></span></a
-                          >
-                          <a href=""
-                            ><span class="material-icons pr-1">
-                              thumb_down_alt </span
-                            ><span><%= i.downPoint %></span></a
-                          >
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </li>
-                <% } %>
+                <li class="replyList"></li>
               </ul>
             </div>
             <% } %>
@@ -161,9 +120,51 @@
     })
       .then((r) => r.json())
       .then((obj) => {
-        console.log(obj);
-        // location.reload(); //刷新頁面
-      });
+        // console.log(obj);
+        let reply = obj.replyCmtRows;
+        let display = function display() {
+          for (i = 0; i < reply.length; i++) {
+            `<div class="d-flex no-gutters">
+                    <div
+                      class="cmtReplyIco d-flex justify-content-center col-1"
+                    >
+                      <img src="/img/return.svg" alt="" />
+                    </div>
+                    <div class="cmtBoxReplyArea col-11">
+                      <div class="cmtInfo d-flex align-items-center">
+                        <div class="userHeadIcon mr-2"></div>
+                        <div class="replycmtSid"></div>
+                        <div class="cmtNickname mr-auto">${reply.nickname}</div>
+                        <div class="cmtInfoDate"><${reply.postTime2}</div>
+                      </div>
+                      <div class="cmtTextWrap">
+                        <span class="cmtBoxContent">${reply.content}</span>
+                      </div>
+                      <div class="cmtTools d-flex align-items-center">
+                        <div class="cmtToolsBtn mr-auto">
+                          <span class="cmtAccuseLink">檢舉</span>
+                        </div>
+
+                        <div class="cmtToolsBtn pr-2">
+                          <a href=""
+                            ><span class="material-icons pr-1">
+                              thumb_up_alt </span
+                            ><span>${reply.upPoint}</span></a
+                          >
+                          <a href=""
+                            ><span class="material-icons pr-1">
+                              thumb_down_alt </span
+                            ><span>${reply.downPoint}</span></a
+                          >
+                        </div>
+                      </div>
+                    </div>
+                  </div>`;
+          }
+        };
+        $('.replyList').html(123);
+      })
+      .catch((error) => console.error('Error:', error));
   });
 </script>
 
