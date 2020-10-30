@@ -7,7 +7,8 @@ import MainContent from './components/MainContent';
 // 使用 react router 管理
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 // 測試用元件
-import Counter2 from './pages/Counter2';
+// import Counter2 from './pages/Counter2';
+import MsgBoard from './components/MsgBoard';
 
 function App() {
   return (
@@ -18,7 +19,7 @@ function App() {
           <Switch>
             {/* 注意：要加上網址參數 */}
             <Route exact path="/">
-              <Counter2 />
+              <MsgBoard />
             </Route>
           </Switch>
         </MainContent>
