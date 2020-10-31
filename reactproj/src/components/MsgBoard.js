@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { connect } from 'react-redux';
 import { IconContext } from 'react-icons';
 import {
   MdAddCircle,
@@ -10,16 +11,26 @@ import {
   MdExpandLess,
   MdExpandMore
 } from 'react-icons/md';
+//引入留言
+import { getMsg, getMsgAsync } from '../actions/index';
+
+
+
 
 function MsgBoard(props) {
+  useEffect(() => {props.getMsgAsync()},[]);
+  
+  
   const styleNone = {
     display: 'none',
   };
   const styleForZIndex = {
     zIndex: '10',
   };
+
   return (
     <>
+      <h1>{props.msg.rows[0].sid}</h1>
       <div className="cmtArea container mx-auto mt-5">
         <div className="cmtModule">
           <div className="cmtModuleHead row align-items-center">
@@ -170,4 +181,30 @@ function MsgBoard(props) {
   );
 }
 
-export default MsgBoard;
+// 將redux中的store的state(狀態)
+// 對應到這個元件中的props中，名稱為total
+
+// 原本的 mapStateToProps
+// const mapStateToProps = (store, ownProps) => {
+//   console.log('ownProps', ownProps);
+//   return { total: store.counter };
+// };
+
+const mapStateToProps = (store) => {
+  return { msg: store.msgBoardReducer };
+};
+// 不使用這個值，略過後自動綁定store的dispatch方法到這個元件的props
+// const mapDispatchToProps = null;
+
+// 高階元件的樣式，必要的
+//                redux store的state,這個元件的props(Counter2)
+//                redux store的dispatch,這個元件的props(Counter2)
+// export default connect(mapStateToProps, actionCreators)(Counter2);
+
+// 綁定部份action creators
+// 注意：第二個傳入參數` { addValue, minusValue ,addValueAsync }`是個物件值
+export default connect(mapStateToProps, {
+  getMsg,
+  getMsgAsync,
+})(MsgBoard);
+
