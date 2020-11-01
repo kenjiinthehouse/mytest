@@ -17,49 +17,44 @@ function MyNavbar(props) {
       <Navbar
         collapseOnSelect
         expand="lg"
-        bg="primary"
+        className="nav"
         variant="dark"
         fixed="top"
       >
-        <Navbar.Brand href="/">
+        {/* <Navbar.Brand className="navLogo" as={NavLink} to="/" exact>
           <img src={logo} className="logo" alt="logo" />
-        </Navbar.Brand>
+        </Navbar.Brand> */}
+        <Nav.Link className="navLogo" as={NavLink} to="/tod22o">
+          <img src={logo} className="logo" alt="logo" />
+        </Nav.Link>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
-          <Nav className="mr-auto">
+          <Nav className="ml-auto navBtns">
             {/* 把Nav.Link作為NavLink來使用 */}
             {/* 一定要加上exact，不然首頁會一直點亮(active) */}
-            <Nav.Link as={NavLink} to="/" exact>
-              首頁
-            </Nav.Link>
             <Nav.Link as={NavLink} to="/todo">
-              待辨事項
+              加入播客
             </Nav.Link>
             <Nav.Link as={NavLink} to="/product">
-              產品
+              探索
             </Nav.Link>
             <Nav.Link as={NavLink} to="/login">
-              登入
+              商城
             </Nav.Link>
             <Nav.Link as={NavLink} to="/register">
-              註冊
+              專欄
             </Nav.Link>
             <Nav.Link as={NavLink} to="/profile">
-              會員資料
+              註冊
             </Nav.Link>
             <Nav.Link as={NavLink} to="/counter">
-              計數器
+              登入
             </Nav.Link>
             <Nav.Link as={NavLink} to="/productlist">
-              產品列表
+              Search
             </Nav.Link>
             <Nav.Link as={NavLink} to="/cart">
               購物車
-            </Nav.Link>
-          </Nav>
-          <Nav>
-            <Nav.Link as={NavLink} to="/about">
-              關於我們
             </Nav.Link>
           </Nav>
         </Navbar.Collapse>
