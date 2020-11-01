@@ -24,9 +24,15 @@ function MsgBoard(props) {
     zIndex: '10',
   };
 
+// const msgList = props.msg.rows && props.msg.rows;
+
+// for (let i = 0; i < msgList.length; i++) {
+//   console.log(msgList[i]);
+// }
+  
+  
   return (
     <>
-      {/* {for(i=0;i<props.msg.rows.length;i++){}} */}
       <h1>{props.msg.rows && props.msg.rows[0].content}</h1>
       <div className="cmtArea container mx-auto mt-5">
         <div className="cmtModule">

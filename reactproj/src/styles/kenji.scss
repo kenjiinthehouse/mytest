@@ -6,8 +6,16 @@ $myBtm: #405b55;
 // Import Bootstrap and its default variables
 @import '~bootstrap/scss/bootstrap.scss';
 // 其它要導入覆蓋掉原本的預設bootstrap樣式要放在這下面
+
+body {
+  background-color: $primary !important;
+  color: #ffffff;
+}
+
 main > .container {
-  padding: 60px 15px 0;
+  margin-top: 6rem;
+  max-width: 101rem;
+  max-height: 56.813rem;
 }
 
 .nav {
@@ -18,15 +26,91 @@ main > .container {
 }
 
 .navLogo {
-  padding-left: 15rem;
+  margin-left: 4rem;
 }
 
 .navBtns {
-  padding-right: 7rem;
+  margin-left: 2rem;
+  margin-right: 2rem;
+}
+
+.navBtns a {
+  margin-left: 2rem;
+  margin-right: 2rem;
+}
+
+.navBtns2 {
+  margin-left: 2rem;
+  margin-right: 2rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  border-left: rgba(255, 255, 255, 0.5) 1px solid;
+  border-right: rgba(255, 255, 255, 0.5) 1px solid;
+}
+
+.navBtns2 a {
+  margin-left: 2rem;
+  margin-right: 2rem;
+}
+
+.navBtns3 {
+  margin-left: 2rem;
+  margin-right: 5rem;
+}
+
+.navBtns3 a {
+  margin-left: 2rem;
+  margin-right: 2rem;
+}
+
+.nav-link svg {
+  width: 1.25rem;
+  height: 1.111rem;
 }
 
 .logo {
   height: 2rem;
+}
+
+.rs-carousel {
+  width: 100rem !important;
+  height: 57rem !important;
+}
+
+.indexCarousel {
+  position: relative;
+}
+
+.carouselButton {
+  width: 32.938rem;
+  height: 7.188rem;
+  border-radius: 58px;
+  background-color: #f8f8f8;
+  position: absolute;
+  right: 40rem;
+  bottom: 25rem;
+  z-index: 10;
+}
+
+.carouselButtonBack {
+  width: 32.938rem;
+  height: 7.188rem;
+  border-radius: 58px;
+  background-color: #b9e3ff;
+  position: absolute;
+  right: 41rem;
+  bottom: 24rem;
+  z-index: 9;
+}
+
+.carouselBanner {
+  width: 62.875rem;
+  height: 14.188rem;
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+  background-color: #201f1f0e;
+  position: absolute;
+  top: 40rem;
 }
 
 .footer {
@@ -49,11 +133,6 @@ main > .container {
   width: 300px;
   height: 500px;
   background-color: $primary;
-}
-
-body {
-  background-color: #ccc;
-  color: #ffffff;
 }
 
 ul,
