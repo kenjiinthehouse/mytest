@@ -80,10 +80,10 @@ app.get("/", function (req, res) {
 
 
 // 留言板
-
-
-app.use("/msgBoard", require(__dirname + "/router/msgBoard"));
-
+// FOR NODE
+// app.use("/msgBoard", require(__dirname + "/router/msgBoard"));
+// FOR REACT
+app.use('/msg', require(__dirname + '/router/msgBoard'));
 
 
 //引入 express

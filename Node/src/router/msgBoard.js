@@ -1,4 +1,4 @@
-const e = require('express');
+
 const express = require('express');
 const moment = require('moment-timezone');
 const db = require('./../db_connect');
@@ -133,16 +133,23 @@ async function getReplyList(req) {
 //   }
 // }
 
-// 輸出全部主留言  //session還未實現
-router.get('/', async (req, res) => {
-  const output = await getMsgList(req);
-  if (req.session.admin) {
-    res.render('msgBoard.ejs', output);
-  } else {
-    res.render('msgBoard.ejs', output);
-  }
-});
 
+// TODO: NODE EJS畫面呈現
+// 輸出全部主留言  //session還未實現
+// router.get('/', async (req, res) => {
+//   const output = await getMsgList(req);
+//   if (req.session.admin) {
+//     res.render('msgBoard.ejs', output);
+//   } else {
+//     res.render('msgBoard.ejs', output);
+//   }
+// });
+
+// TODO: FOR REACT
+router.post('/', async (req, res) => {
+  res.json(await getMsgList(req));
+  // res.json(sqlResult);
+});
 
 // http://localhost:7788/address-book/edit/139
 router.get('/reply/:sid', async (req, res) => {

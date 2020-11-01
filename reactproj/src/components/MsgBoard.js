@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { connect } from 'react-redux';
 import { IconContext } from 'react-icons';
 import {
   MdAddCircle,
@@ -10,16 +11,23 @@ import {
   MdExpandLess,
   MdExpandMore
 } from 'react-icons/md';
+//引入留言
+import { getMsg, getMsgAsync } from '../actions/index';
 
 function MsgBoard(props) {
+  useEffect(() => {props.getMsgAsync()},[]);
+   
   const styleNone = {
     display: 'none',
   };
   const styleForZIndex = {
     zIndex: '10',
   };
+
   return (
     <>
+      {/* {for(i=0;i<props.msg.rows.length;i++){}} */}
+      <h1>{props.msg.rows && props.msg.rows[0].content}</h1>
       <div className="cmtArea container mx-auto mt-5">
         <div className="cmtModule">
           <div className="cmtModuleHead row align-items-center">
@@ -170,4 +178,12 @@ function MsgBoard(props) {
   );
 }
 
-export default MsgBoard;
+
+const mapStateToProps = (store) => {
+  return { msg: store.msgBoardReducer };
+};
+export default connect(mapStateToProps, {
+  getMsg,
+  getMsgAsync,
+})(MsgBoard);
+
