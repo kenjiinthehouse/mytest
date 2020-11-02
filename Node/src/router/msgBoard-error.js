@@ -5,30 +5,72 @@ const db = require('./../db_connect');
 const router = express.Router();
 
 //取得資料庫裡全部主留言
-async function getMsgList(req) {  
-    let sql = `SELECT * FROM msgboard WHERE parentId = 0 ORDER BY sid DESC`;
+const output = {
+  page: 0,
+  perPage: 10,
+  totalRows: 0,
+  totalPage: 0,
+  rows: [],
+  replyRows: [],
+};
+async function getMsgList(req) {
+  const [[{ totalRows }]] = await db.query(
+    'SELECT COUNT(1) totalRows FROM msgboard'
+  );
+  // console.log(totalRows)
+  if (totalRows > 0) {
+    let page = parseInt(req.query.page) || 1;
+    output.totalRows = totalRows;
+    output.totalPage = Math.ceil(totalRows / output.perPage);
+    if (page < 1) {
+      output.page = 1;
+    } else if (page > output.totalPage) {
+      output.page = output.totalPage;
+    } else {
+      output.page = page;
+    }
+
+    let sql = `SELECT * FROM msgboard WHERE parentId = 0 ORDER BY sid DESC LIMIT ${
+      (output.page - 1) * output.perPage
+    },${output.perPage}`;
+    let replyCmtSql = `SELECT * FROM msgboard  WHERE parentId = 22 `;
+
     const [sqlResult] = await db.query(sql);
+
+    const [result3] = await db.query(replyCmtSql);
+
     sqlResult.forEach((element) => {
       element.postTime2 = moment(element.postTime).format('YYYY-MM-DD');
-    });   
-if (sqlResult.length !== 0) {
-  // console.log(output.replyRows[0].sid);
-  return sqlResult;
-} else {
-  return '目前沒有留言';
-}}
+    });
+    result3.forEach((element) => {
+      element.postTime2 = moment(element.postTime).format('YYYY-MM-DD');
+    });
 
+    output.rows = sqlResult;
+    output.replyRows = result3;
+  }
 
+  if (output.rows.length !== 0) {
+    // console.log(output.replyRows[0].sid);
+    return output;
+  } else {
+    return '目前沒有留言';
+  }
+}
 
-// //根據前端送來的sid搜尋比對資料庫裡附隨主留言的留言 sid = parentId
-// const replyCmtOutput = {
-//   rCmtPage: 0, // 回應元件的頁數
-//   rCmtPerPage: 10, //回應元件每頁幾筆留言
-//   rCmtTotalRows: 0, //回應元件共有幾筆留言
-//   rCmtTotalPage: 0, //回應元件共有幾頁
-//   replyCmtRows: [], //回應
-// };
-async function getReplyList(req) {  
+//根據前端送來的sid搜尋比對資料庫裡附隨主留言的留言 sid = parentId
+const replyCmtOutput = {
+  rCmtPage: 0, // 回應元件的頁數
+  rCmtPerPage: 10, //回應元件每頁幾筆留言
+  rCmtTotalRows: 0, //回應元件共有幾筆留言
+  rCmtTotalPage: 0, //回應元件共有幾頁
+  replyCmtRows: [], //回應
+};
+
+async function getReplyList(req) {
+  // let replyCmtSql = `SELECT * FROM msgboard WHERE parentId = ? ORDER BY sid DESC LIMIT ${
+  //   (replyCmtOutput.rCmtPage - 1) * replyCmtOutput.rCmtPage
+  // },${replyCmtOutput.rCmtPage}`;
 
   let replyCmtSql = `SELECT * FROM msgboard WHERE parentId = ?`;
 
@@ -37,8 +79,10 @@ async function getReplyList(req) {
   replySqlResult.forEach((element) => {
     element.postTime2 = moment(element.postTime).format('YYYY-MM-DD');
   });
-  if (replySqlResult.length !== 0) {
-    return replySqlResult;
+
+  replyCmtOutput.replyCmtRows = replySqlResult;
+  if (replyCmtOutput.replyCmtRows.length !== 0) {
+    return replyCmtOutput;
   } else {
     return '目前沒有回應的留言5555';
   }
@@ -109,7 +153,7 @@ router.get('/', async (req, res) => {
 
 // http://localhost:7788/address-book/edit/139
 router.get('/reply/:sid', async (req, res) => {
-  res.send(await getReplyList(req));
+  res.json(await getReplyList(req));
 });
 
 router.get('/api', async (req, res) => {
