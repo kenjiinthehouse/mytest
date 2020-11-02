@@ -9,6 +9,7 @@ import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 // 測試用元件
 // import Counter2 from './pages/Counter2';
 import MsgBoard from './components/MsgBoard';
+import IndexCarousel from './components/IndexCarousel';
 
 function App() {
   return (
@@ -19,7 +20,7 @@ function App() {
           <Switch>
             {/* 注意：要加上網址參數 */}
             <Route exact path="/">
-              <MsgBoard />
+              <IndexCarousel />
             </Route>
           </Switch>
         </MainContent>
