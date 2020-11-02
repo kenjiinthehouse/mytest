@@ -22,6 +22,7 @@ import MsgInput from './MsgInput';
 function MsgBoard(props) {
   const { msg,reply } = props;
   const [isLoading, setIsLoading] = useState(false);
+  
 
   
 
@@ -186,7 +187,8 @@ function MsgBoard(props) {
                         <Accordion.Collapse eventKey={item.sid}>
                           <div className="cmtReply">
                             <ul className="cmtList">
-                              {reply.map((item) => {
+                              { 
+                                reply.map((item) => {
                                 return (
                                   <li className="replyList">
                                     <div className="d-flex no-gutters">

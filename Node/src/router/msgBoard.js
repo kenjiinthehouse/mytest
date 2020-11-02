@@ -40,9 +40,24 @@ async function getReplyList(req) {
   if (replySqlResult.length !== 0) {
     return replySqlResult;
   } else {
-    return '目前沒有回應的留言5555';
+    return [];
   }
 }
+
+// [
+//   {
+//     sid: '',
+//     parentId: '',
+//     memberId: '',
+//     nickname: '',
+//     content: '留個言吧',
+//     upPoint: '',
+//     downPoint: '',
+//     accusePoint: '',
+//     postTime: '',
+//     postTime2: '',
+//   },
+// ];
 
 // TODO:這邊有問題 
 // async function getReplyList(req) {
