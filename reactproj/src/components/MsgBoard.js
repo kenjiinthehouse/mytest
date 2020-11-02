@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Collapse, Button } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { IconContext } from 'react-icons';
 import {
@@ -9,14 +10,30 @@ import {
   MdThumbDown,
   MdReport,
   MdExpandLess,
-  MdExpandMore
+  MdExpandMore,
 } from 'react-icons/md';
+import { BsArrowReturnRight } from 'react-icons/bs';
 //引入留言
-import { getMsg, getMsgAsync } from '../actions/index';
+import { getMsg, getMsgAsync, getReply, getReplyAsync } from '../actions/index';
+import MsgInput from './MsgInput';
 
 function MsgBoard(props) {
-  useEffect(() => {props.getMsgAsync()},[]);
-   
+  const { msg,reply } = props;
+
+  const [isLoading, setIsLoading] = useState(false);
+  const [open, setOpen] = useState(false);
+
+  useEffect(() => {
+    setIsLoading(true);
+    async function msgList() {
+      await props.getMsgAsync();
+    }
+    msgList();
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 1000);
+  }, []);
+
   const styleNone = {
     display: 'none',
   };
@@ -24,60 +41,23 @@ function MsgBoard(props) {
     zIndex: '10',
   };
 
-// const msgList = props.msg.rows && props.msg.rows;
+  const displayLoading = <></>;
 
-// for (let i = 0; i < msgList.length; i++) {
-//   console.log(msgList[i]);
-// }
-  
-  
-  return (
+  const displayBoard = (
     <>
-      <h1>{props.msg.rows && props.msg.rows[0].content}</h1>
+      {/* <h1>{console.log(Array.isArray(msg))}</h1> */}
+      {/* {msg.map((item) => {
+        return <h1>{item.sid}</h1>;
+      })} */}
+
       <div className="cmtArea container mx-auto mt-5">
         <div className="cmtModule">
           <div className="cmtModuleHead row align-items-center">
             <h5 className="cmtTitle pr-2">留言</h5>
             <span className="cmtCount">124</span>
           </div>
-          <div className="writeBox">
-            <div className="writeBoxLogged">
-              <form>
-                <fieldset>
-                  <legend className="ghost">留下評論</legend>
-                  <div>
-                    <div className="userProfile">
-                      <span className="userId" style={styleNone}>
-                        使用者Id:xxxxx
-                      </span>
-                      <span className="userNickname" style={styleNone}>
-                        使用者暱稱:BigJohn
-                      </span>
-                    </div>
-                    <div className="writeCmt">
-                      <textarea
-                        className="cmtTextarea"
-                        name="cmtTextarea"
-                        id="cmtTextarea"
-                        cols="30"
-                        rows="3"
-                      ></textarea>
-                      <label htmlFor="cmtTextarea" style={styleForZIndex}>
-                        請留下評論
-                      </label>
-                    </div>
-                    <div className="cmtSendBox">
-                      <button type="button" className="cmtSendBtn">
-                        <IconContext.Provider value={{ className: 'addBtn' }}>
-                          <MdAddCircle />
-                        </IconContext.Provider>
-                      </button>
-                    </div>
-                  </div>
-                </fieldset>
-              </form>
-            </div>
-          </div>
+
+          <MsgInput />
 
           <div className="cmtSortOption d-flex align-items-center">
             <ul className="cmtSortOptionList">
@@ -102,94 +82,162 @@ function MsgBoard(props) {
 
           <div className="cmtContainer">
             <ul className="cmtList">
-              <li>
-                <div className="cmtBox">
-                  <div className="cmtBoxArea">
-                    <div className="cmtInfo d-flex align-items-center">
-                      <div className="userHeadIcon mr-2"></div>
-                      <div className="cmtSid" style={styleNone}>
-                        i.sid
-                      </div>
-                      <div className="cmtNickname mr-auto">i.nickname</div>
-                      <div className="cmtInfoDate">i.postTime2</div>
-                    </div>
-                    <div className="cmtTextWrap">
-                      <span className="cmtBoxContent">i.content</span>
-                    </div>
-                    <div className="cmtTools d-flex align-items-center">
-                      <div className="cmtToolsBtn mr-auto">
-                        <div
-                          className="replyBtn"
-                          data-sid="i.sid"
-                          data-toggle="collapse"
-                          data-target="i.nickname"
-                        >
-                          <span className="pr-1">回應</span>
-                          <span className="cmtReplyCount">(20)</span>
-                          <span className="">
-                            {' '}
-                            <IconContext.Provider
-                              value={{ className: '.replyBtn' }}
+              {msg.map((item) => {
+                return (
+                  <li key={item.sid}>
+                    <div className="cmtBox">
+                      <div className="cmtBoxArea">
+                        <div className="cmtInfo d-flex align-items-center">
+                          <div className="userHeadIcon mr-2"></div>
+                          <div className="cmtSid" style={styleNone}>
+                            {item.sid}
+                          </div>
+                          <div className="cmtNickname mr-auto">
+                            {item.nickname}
+                          </div>
+                          <div className="cmtInfoDate">{item.postTime2}</div>
+                        </div>
+                        <div className="cmtTextWrap">
+                          <span className="cmtBoxContent">{item.content}</span>
+                        </div>
+                        <div className="cmtTools d-flex align-items-center">
+                          <div className="cmtToolsBtn mr-auto">
+                            <div
+                              className="replyBtn"
+                              onClick={() => {
+                                async function sendSid() {
+                                  await props.getReplyAsync(item.sid);
+                                }
+                                sendSid();                                
+                                setOpen(!open);
+                              }}
                             >
-                              <MdExpandMore />
-                            </IconContext.Provider>
-                          </span>
+                              <span className="pr-1">回應</span>
+                              <span className="cmtReplyCount">(20)</span>
+                              <span className="">
+                                <IconContext.Provider
+                                  value={{ className: '.replyBtn' }}
+                                >
+                                  <MdExpandMore />
+                                </IconContext.Provider>
+                              </span>
+                            </div>
+                          </div>
+
+                          <div className="cmtToolsBtn pr-2">
+                            <a href="" className="pr-2">
+                              <span className="material-icons pr-1">
+                                <IconContext.Provider
+                                  value={{ className: 'cmtToolsBtn' }}
+                                >
+                                  <MdThumbUp />
+                                </IconContext.Provider>
+                              </span>
+                              <span>{item.upPoint}</span>
+                            </a>
+                            <a href="">
+                              <span className="material-icons pr-1">
+                                <IconContext.Provider
+                                  value={{ className: 'cmtToolsBtn' }}
+                                >
+                                  <MdThumbDown />
+                                </IconContext.Provider>
+                              </span>
+                              <span>{item.downPoint}</span>
+                            </a>
+                            <span className="cmtAccuseLink pl-2">
+                              <IconContext.Provider
+                                value={{ className: 'cmtToolsBtn' }}
+                              >
+                                <MdReport />
+                              </IconContext.Provider>
+                            </span>
+                          </div>
                         </div>
                       </div>
+                      {/* 展開回應 */}
+                      <Collapse in={open}>
+                        <div className="cmtReply collapse">
+                          <ul className="cmtList">
+                            {reply.map((item)=>{
+                              return (
+                                <li className="replyList">
+                                  <div className="d-flex no-gutters">
+                                    <div className="cmtReplyIco d-flex justify-content-center col-1">
+                                      <IconContext.Provider
+                                        value={{ className: 'replyArrow' }}
+                                      >
+                                        <BsArrowReturnRight />
+                                      </IconContext.Provider>
+                                    </div>
+                                    <div className="cmtBoxReplyArea col-11">
+                                      <div className="cmtInfo d-flex align-items-center">
+                                        <div className="userHeadIcon mr-2"></div>
+                                        <div className="replycmtSid"></div>
+                                        <div className="cmtNickname mr-auto">
+                                          {item.nickname}
+                                        </div>
+                                        <div className="cmtInfoDate">
+                                          {item.postTime2}
+                                        </div>
+                                      </div>
+                                      <div className="cmtTextWrap">
+                                        <span className="cmtBoxContent">
+                                          {item.content}
+                                        </span>
+                                      </div>
+                                      <div className="cmtTools d-flex align-items-center">
+                                        <div className="cmtToolsBtn mr-auto">
+                                          <span className="cmtAccuseLink">
+                                            檢舉
+                                          </span>
+                                        </div>
 
-                      <div className="cmtToolsBtn pr-2">
-                        <a href="" className="pr-2">
-                          <span className="material-icons pr-1">
-                            <IconContext.Provider
-                              value={{ className: 'cmtToolsBtn' }}
-                            >
-                              <MdThumbUp />
-                            </IconContext.Provider>
-                          </span>
-                          <span>i.upPoint</span>
-                        </a>
-                        <a href="">
-                          <span className="material-icons pr-1">
-                            <IconContext.Provider
-                              value={{ className: 'cmtToolsBtn' }}
-                            >
-                              <MdThumbDown />
-                            </IconContext.Provider>
-                          </span>
-                          <span>i.downPoint</span>
-                        </a>
-                        <span className="cmtAccuseLink pl-2">
-                          <IconContext.Provider
-                            value={{ className: 'cmtToolsBtn' }}
-                          >
-                            <MdReport />
-                          </IconContext.Provider>
-                        </span>
-                      </div>
+                                        <div className="cmtToolsBtn pr-2">
+                                          <a href="">
+                                            <span className="material-icons pr-1">
+                                              thumb_up_alt
+                                            </span>
+                                            <span>{item.upPoint}</span>
+                                          </a>
+                                          <a href="">
+                                            <span className="material-icons pr-1">
+                                              thumb_down_alt
+                                            </span>
+                                            <span>{item.downPoint}</span>
+                                          </a>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </li>
+                              );
+                            })}                            
+                          </ul>
+                        </div>
+                      </Collapse>
                     </div>
-                  </div>
-                  {/* 展開回應 */}
-                  <div className="cmtReply collapse" id="i.nickname">
-                    <ul className="cmtList">
-                      <li className="replyList i.sid"></li>
-                    </ul>
-                  </div>
-                </div>
-              </li>
+                  </li>
+                );
+              })}
             </ul>
           </div>
         </div>
       </div>
     </>
   );
+
+  return isLoading ? displayLoading : displayBoard;
 }
 
-
 const mapStateToProps = (store) => {
-  return { msg: store.msgBoardReducer };
+  return { 
+    msg: store.msgBoardReducer,
+    reply: store.replyReducer, };
 };
 export default connect(mapStateToProps, {
   getMsg,
   getMsgAsync,
+  getReply,
+  getReplyAsync,
 })(MsgBoard);
-

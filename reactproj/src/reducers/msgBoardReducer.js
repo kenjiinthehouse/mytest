@@ -1,12 +1,15 @@
-import {GET_MSG} from '../actions/msgBoardActionTypes';
+import {GET_MSG, GET_REPLY} from '../actions/msgBoardActionTypes';
 
 
 
 
-export default function msgBoardReducer(state = {}, action) {
+export default function msgBoardReducer(
+  state = [],
+  action
+) {
   switch (action.type) {
     case GET_MSG:
-      return action.obj;
+      return action.payload;
     default:
       return state;
   }
