@@ -10,6 +10,7 @@ $myBtm: #405b55;
 body {
   background-color: $primary !important;
   color: #ffffff;
+  cursor: default;
 }
 
 main > .container {
@@ -382,6 +383,13 @@ a:hover {
 //   background-repeat: no-repeat;
 // }
 
+.replyAccording {
+  cursor: pointer;
+}
+
+.pointAccording {
+  cursor: pointer;
+}
 // icon
 
 .addBtn {
@@ -408,5 +416,3 @@ a:hover {
 .emptyReplyBox {
   margin-bottom: 3em;
 }
-
-

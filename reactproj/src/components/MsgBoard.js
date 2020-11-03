@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Button, Accordion } from 'react-bootstrap';
+import { Button, Accordion, } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { IconContext } from 'react-icons';
 //引入icon
@@ -110,8 +110,8 @@ function MsgBoard(props) {
                             <div className="cmtToolsBtn mr-auto">
                               <div>
                                 <Accordion.Toggle
-                                  as={Button}
-                                  variant="link"
+                                  as="span"
+                                  variant="replyAccording"
                                   onClick={() => {
                                     async function sendSid() {
                                       await props.getReplyAsync(item.sid);
@@ -121,7 +121,7 @@ function MsgBoard(props) {
                                   }}
                                   eventKey={item.sid}
                                 >
-                                  <span className="pr-1">回應</span>
+                                  <span className="pointAccording pr-1">回應</span>
                                 </Accordion.Toggle>
                                 <span className="cmtReplyCount">(20)</span>
                                 <span className="">
@@ -179,7 +179,7 @@ function MsgBoard(props) {
                                             目前沒有留言
                                           </span>
                                         </div>
-                                      </div>                                      
+                                      </div>
                                     </li>
                                   );
                                 else
