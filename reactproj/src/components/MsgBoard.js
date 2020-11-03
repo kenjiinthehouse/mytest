@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Collapse, Button } from 'react-bootstrap';
+import { Button, Accordion } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { IconContext } from 'react-icons';
+//引入icon
 import {
   MdAddCircle,
   MdWhatshot,
@@ -13,15 +14,17 @@ import {
   MdExpandMore,
 } from 'react-icons/md';
 import { BsArrowReturnRight } from 'react-icons/bs';
-//引入留言
+//引入留言 子留言
 import { getMsg, getMsgAsync, getReply, getReplyAsync } from '../actions/index';
+//引入輸入留言組件
 import MsgInput from './MsgInput';
 
 function MsgBoard(props) {
   const { msg,reply } = props;
-
   const [isLoading, setIsLoading] = useState(false);
-  const [open, setOpen] = useState(false);
+  
+
+  
 
   useEffect(() => {
     setIsLoading(true);
@@ -32,7 +35,11 @@ function MsgBoard(props) {
     setTimeout(() => {
       setIsLoading(false);
     }, 1000);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  
+
 
   const styleNone = {
     display: 'none',
@@ -81,146 +88,169 @@ function MsgBoard(props) {
           </div>
 
           <div className="cmtContainer">
-            <ul className="cmtList">
-              {msg.map((item) => {
-                return (
-                  <li key={item.sid}>
-                    <div className="cmtBox">
-                      <div className="cmtBoxArea">
-                        <div className="cmtInfo d-flex align-items-center">
-                          <div className="userHeadIcon mr-2"></div>
-                          <div className="cmtSid" style={styleNone}>
-                            {item.sid}
+            <Accordion>
+              <ul className="cmtList">
+                {msg.map((item) => {
+                  return (
+                    <li key={item.sid}>
+                      <div className="cmtBox">
+                        <div className="cmtBoxArea">
+                          <div className="cmtInfo d-flex align-items-center">
+                            <div className="userHeadIcon mr-2"></div>
+                            <div className="cmtSid" style={styleNone}>
+                              {item.sid}
+                            </div>
+                            <div className="cmtNickname mr-auto">
+                              {item.nickname}
+                            </div>
+                            <div className="cmtInfoDate">{item.postTime2}</div>
                           </div>
-                          <div className="cmtNickname mr-auto">
-                            {item.nickname}
+                          <div className="cmtTextWrap">
+                            <span className="cmtBoxContent">
+                              {item.content}
+                            </span>
                           </div>
-                          <div className="cmtInfoDate">{item.postTime2}</div>
-                        </div>
-                        <div className="cmtTextWrap">
-                          <span className="cmtBoxContent">{item.content}</span>
-                        </div>
-                        <div className="cmtTools d-flex align-items-center">
-                          <div className="cmtToolsBtn mr-auto">
-                            <div
+
+                          <div className="cmtTools d-flex align-items-center">
+                            <div className="cmtToolsBtn mr-auto">
+                              <div>
+                                {/* <div
                               className="replyBtn"
                               onClick={() => {
                                 async function sendSid() {
                                   await props.getReplyAsync(item.sid);
                                 }
-                                sendSid();                                
-                                setOpen(!open);
+                                sendSid();      
+                                console.log(item.sid)                          
+                                // setOpen(!open);
                               }}
-                            >
-                              <span className="pr-1">回應</span>
-                              <span className="cmtReplyCount">(20)</span>
-                              <span className="">
-                                <IconContext.Provider
-                                  value={{ className: '.replyBtn' }}
+                            > */}
+
+                                <Accordion.Toggle
+                                  as={Button}
+                                  variant="link"
+                                  onClick={() => {
+                                    async function sendSid() {
+                                      await props.getReplyAsync(item.sid);
+                                    }
+                                    sendSid();
+                                    console.log(item.sid);
+                                  
+                                  }}
+                                  eventKey={item.sid}
                                 >
-                                  <MdExpandMore />
+                                  <span className="pr-1">回應</span>
+                                </Accordion.Toggle>
+                                <span className="cmtReplyCount">(20)</span>
+                                <span className="">
+                                  <IconContext.Provider
+                                    value={{ className: '.replyBtn' }}
+                                  >
+                                    <MdExpandMore />
+                                  </IconContext.Provider>
+                                </span>
+                              </div>
+                            </div>
+
+                            <div className="cmtToolsBtn pr-2">
+                              <a href="" className="pr-2">
+                                <span className="material-icons pr-1">
+                                  <IconContext.Provider
+                                    value={{ className: 'cmtToolsBtn' }}
+                                  >
+                                    <MdThumbUp />
+                                  </IconContext.Provider>
+                                </span>
+                                <span>{item.upPoint}</span>
+                              </a>
+                              <a href="">
+                                <span className="material-icons pr-1">
+                                  <IconContext.Provider
+                                    value={{ className: 'cmtToolsBtn' }}
+                                  >
+                                    <MdThumbDown />
+                                  </IconContext.Provider>
+                                </span>
+                                <span>{item.downPoint}</span>
+                              </a>
+                              <span className="cmtAccuseLink pl-2">
+                                <IconContext.Provider
+                                  value={{ className: 'cmtToolsBtn' }}
+                                >
+                                  <MdReport />
                                 </IconContext.Provider>
                               </span>
                             </div>
                           </div>
-
-                          <div className="cmtToolsBtn pr-2">
-                            <a href="" className="pr-2">
-                              <span className="material-icons pr-1">
-                                <IconContext.Provider
-                                  value={{ className: 'cmtToolsBtn' }}
-                                >
-                                  <MdThumbUp />
-                                </IconContext.Provider>
-                              </span>
-                              <span>{item.upPoint}</span>
-                            </a>
-                            <a href="">
-                              <span className="material-icons pr-1">
-                                <IconContext.Provider
-                                  value={{ className: 'cmtToolsBtn' }}
-                                >
-                                  <MdThumbDown />
-                                </IconContext.Provider>
-                              </span>
-                              <span>{item.downPoint}</span>
-                            </a>
-                            <span className="cmtAccuseLink pl-2">
-                              <IconContext.Provider
-                                value={{ className: 'cmtToolsBtn' }}
-                              >
-                                <MdReport />
-                              </IconContext.Provider>
-                            </span>
-                          </div>
                         </div>
-                      </div>
-                      {/* 展開回應 */}
-                      <Collapse in={open}>
-                        <div className="cmtReply collapse">
-                          <ul className="cmtList">
-                            {reply.map((item)=>{
-                              return (
-                                <li className="replyList">
-                                  <div className="d-flex no-gutters">
-                                    <div className="cmtReplyIco d-flex justify-content-center col-1">
-                                      <IconContext.Provider
-                                        value={{ className: 'replyArrow' }}
-                                      >
-                                        <BsArrowReturnRight />
-                                      </IconContext.Provider>
-                                    </div>
-                                    <div className="cmtBoxReplyArea col-11">
-                                      <div className="cmtInfo d-flex align-items-center">
-                                        <div className="userHeadIcon mr-2"></div>
-                                        <div className="replycmtSid"></div>
-                                        <div className="cmtNickname mr-auto">
-                                          {item.nickname}
-                                        </div>
-                                        <div className="cmtInfoDate">
-                                          {item.postTime2}
-                                        </div>
+                        {/* 展開回應 */}
+                        <Accordion.Collapse eventKey={item.sid}>
+                          <div className="cmtReply">
+                            <ul className="cmtList">
+                              { 
+                                reply.map((item) => {
+                                return (
+                                  <li className="replyList">
+                                    <div className="d-flex no-gutters">
+                                      <div className="cmtReplyIco d-flex justify-content-center col-1">
+                                        <IconContext.Provider
+                                          value={{ className: 'replyArrow' }}
+                                        >
+                                          <BsArrowReturnRight />
+                                        </IconContext.Provider>
                                       </div>
-                                      <div className="cmtTextWrap">
-                                        <span className="cmtBoxContent">
-                                          {item.content}
-                                        </span>
-                                      </div>
-                                      <div className="cmtTools d-flex align-items-center">
-                                        <div className="cmtToolsBtn mr-auto">
-                                          <span className="cmtAccuseLink">
-                                            檢舉
+                                      <div className="cmtBoxReplyArea col-11">
+                                        <div className="cmtInfo d-flex align-items-center">
+                                          <div className="userHeadIcon mr-2"></div>
+                                          <div className="replycmtSid"></div>
+                                          <div className="cmtNickname mr-auto">
+                                            {item.nickname}
+                                          </div>
+                                          <div className="cmtInfoDate">
+                                            {item.postTime2}
+                                          </div>
+                                        </div>
+                                        <div className="cmtTextWrap">
+                                          <span className="cmtBoxContent">
+                                            {item.content}
                                           </span>
                                         </div>
+                                        <div className="cmtTools d-flex align-items-center">
+                                          <div className="cmtToolsBtn mr-auto">
+                                            <span className="cmtAccuseLink">
+                                              檢舉
+                                            </span>
+                                          </div>
 
-                                        <div className="cmtToolsBtn pr-2">
-                                          <a href="">
-                                            <span className="material-icons pr-1">
-                                              thumb_up_alt
-                                            </span>
-                                            <span>{item.upPoint}</span>
-                                          </a>
-                                          <a href="">
-                                            <span className="material-icons pr-1">
-                                              thumb_down_alt
-                                            </span>
-                                            <span>{item.downPoint}</span>
-                                          </a>
+                                          <div className="cmtToolsBtn pr-2">
+                                            <a href="">
+                                              <span className="material-icons pr-1">
+                                                thumb_up_alt
+                                              </span>
+                                              <span>{item.upPoint}</span>
+                                            </a>
+                                            <a href="">
+                                              <span className="material-icons pr-1">
+                                                thumb_down_alt
+                                              </span>
+                                              <span>{item.downPoint}</span>
+                                            </a>
+                                          </div>
                                         </div>
                                       </div>
                                     </div>
-                                  </div>
-                                </li>
-                              );
-                            })}                            
-                          </ul>
-                        </div>
-                      </Collapse>
-                    </div>
-                  </li>
-                );
-              })}
-            </ul>
+                                  </li>
+                                );
+                              })}
+                            </ul>
+                          </div>
+                        </Accordion.Collapse>
+                      </div>
+                    </li>
+                  );
+                })}
+              </ul>
+            </Accordion>
           </div>
         </div>
       </div>
