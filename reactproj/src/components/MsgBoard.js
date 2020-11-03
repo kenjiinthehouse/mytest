@@ -36,6 +36,8 @@ function MsgBoard(props) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  
+
   const styleNone = {
     display: 'none',
   };
@@ -56,7 +58,7 @@ function MsgBoard(props) {
         <div className="cmtModule">
           <div className="cmtModuleHead row align-items-center">
             <h5 className="cmtTitle pr-2">留言</h5>
-            <span className="cmtCount">124</span>
+            <span className="cmtCount">{msg.length}</span>
           </div>
 
           <MsgInput />
@@ -121,9 +123,16 @@ function MsgBoard(props) {
                                   }}
                                   eventKey={item.sid}
                                 >
-                                  <span className="pointAccording pr-1">回應</span>
+                                  <span className="pointAccording pr-1">
+                                    回應
+                                  </span>
                                 </Accordion.Toggle>
-                                <span className="cmtReplyCount">(20)</span>
+                                <span
+                                  className="cmtReplyCount"
+                                  style={styleNone}
+                                >
+                                  ({reply.length})
+                                </span>
                                 <span className="">
                                   <IconContext.Provider
                                     value={{ className: '.replyBtn' }}
@@ -170,6 +179,7 @@ function MsgBoard(props) {
                           <div className="cmtReply">
                             <ul className="cmtList">
                               {reply.map((item) => {
+
                                 if (item.empty)
                                   return (
                                     <li className="replyList">
@@ -184,7 +194,7 @@ function MsgBoard(props) {
                                   );
                                 else
                                   return (
-                                    <li className="replyList">
+                                    <li key={item.sid} className="replyList">
                                       <div className="d-flex no-gutters">
                                         <div className="cmtReplyIco d-flex justify-content-center col-1">
                                           <IconContext.Provider

@@ -1,3 +1,11 @@
+INSERT INTO `msgboard` (`sid`, `parentId`, `memberId`, `nickname`, `content`, `upPoint`, `downPoint`, `accusePoint`, `postTime`) VALUES (NULL, DEFAULT, 'Energy', '黃小貓', '就你說了放手', DEFAULT, DEFAULT, DEFAULT, NOW());
+
+
+
+
+
+
+
 INSERT 
 INTO `msgboard`
 (`sid`,

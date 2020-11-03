@@ -10,6 +10,7 @@ import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 // import Counter2 from './pages/Counter2';
 import MsgBoard from './components/MsgBoard';
 import IndexCarousel from './components/IndexCarousel';
+import RecipeReviewCard from './components/RecipeReviewCard';
 
 function App() {
   return (

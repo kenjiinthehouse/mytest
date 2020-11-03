@@ -6,11 +6,36 @@ import { MdAddCircle } from 'react-icons/md';
 // import { getMsg, getMsgAsync } from '../actions/index';
 
 function MsgInput(props) {
+  const [userId, setUserId] = useState('9527'); //memberId
+  const [userNickname, setUserNickname] = useState('七星刀雷恩'); //nickname
+  const [textValue, setTextValue] = useState(''); //content
   const styleNone = {
     display: 'none',
   };
   const styleForZIndex = {
     zIndex: '10',
+  };
+
+  const sendInput = async function () {
+    const url = 'http://localhost:5566/msg/add';
+    const request = new Request(url, {
+      method: 'POST',
+      body: JSON.stringify({
+        memberId: userId,
+        nickname: userNickname,
+        content: textValue,
+      }),
+      headers: new Headers({
+        Accept: 'application/json',
+        'Content-type': 'application/json',
+      }),
+    });
+
+    const response = await fetch(request);
+    const data = await response.json();
+    console.log('data', data);
+    //完成後清空輸入框
+    setTextValue('')
   };
 
   return (
@@ -23,10 +48,10 @@ function MsgInput(props) {
               <div>
                 <div className="userProfile">
                   <span className="userId" style={styleNone}>
-                    使用者Id:xxxxx
+                    {userId}
                   </span>
                   <span className="userNickname" style={styleNone}>
-                    使用者暱稱:BigJohn
+                    {userNickname}
                   </span>
                 </div>
                 <div className="writeCmt">
@@ -37,11 +62,16 @@ function MsgInput(props) {
                     cols="20"
                     rows="2"
                     placeholder="輸入留言"
+                    value={textValue}
+                    onChange={(event) => setTextValue(event.target.value)}
                   ></textarea>
-                  
                 </div>
                 <div className="cmtSendBox">
-                  <button type="button" className="cmtSendBtn">
+                  <button
+                    type="button"
+                    className="cmtSendBtn"
+                    onClick={() => sendInput()}
+                  >
                     <IconContext.Provider value={{ className: 'addBtn' }}>
                       <MdAddCircle />
                     </IconContext.Provider>
