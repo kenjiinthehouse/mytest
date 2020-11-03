@@ -5,7 +5,7 @@ import { MdAddCircle } from 'react-icons/md';
 //引入留言
 // import { getMsg, getMsgAsync } from '../actions/index';
 
-function MsgInput(props) {
+function MsgReplyInput(props) {
   const styleNone = {
     display: 'none',
   };
@@ -15,7 +15,7 @@ function MsgInput(props) {
 
   return (
     <>
-      <div className="writeBox">
+      <div className="writeBox mt-3">
         <div className="writeBoxLogged">
           <form>
             <fieldset>
@@ -31,14 +31,13 @@ function MsgInput(props) {
                 </div>
                 <div className="writeCmt">
                   <textarea
-                    className="cmtTextarea"
+                    className="replyTextarea"
                     name="cmtTextarea"
                     id="cmtTextarea"
-                    cols="20"
-                    rows="2"
-                    placeholder="輸入留言"
+                    cols="30"
+                    rows="3"
+                    placeholder="輸入回應"
                   ></textarea>
-                  
                 </div>
                 <div className="cmtSendBox">
                   <button type="button" className="cmtSendBtn">
@@ -59,4 +58,4 @@ function MsgInput(props) {
 // const mapStateToProps = (store) => {
 //   return { msg: store.msgBoardReducer };
 // };
-export default MsgInput;
+export default MsgReplyInput;

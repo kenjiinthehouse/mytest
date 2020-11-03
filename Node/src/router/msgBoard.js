@@ -40,7 +40,7 @@ async function getReplyList(req) {
   if (replySqlResult.length !== 0) {
     return replySqlResult;
   } else {
-    return [];
+    return [{empty:true}];
   }
 }
 

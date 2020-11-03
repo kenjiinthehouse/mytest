@@ -18,13 +18,11 @@ import { BsArrowReturnRight } from 'react-icons/bs';
 import { getMsg, getMsgAsync, getReply, getReplyAsync } from '../actions/index';
 //引入輸入留言組件
 import MsgInput from './MsgInput';
+import MsgReplyInput from './MsgReplyInput';
 
 function MsgBoard(props) {
-  const { msg,reply } = props;
+  const { msg, reply } = props;
   const [isLoading, setIsLoading] = useState(false);
-  
-
-  
 
   useEffect(() => {
     setIsLoading(true);
@@ -35,11 +33,8 @@ function MsgBoard(props) {
     setTimeout(() => {
       setIsLoading(false);
     }, 1000);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  
-
 
   const styleNone = {
     display: 'none',
@@ -114,18 +109,6 @@ function MsgBoard(props) {
                           <div className="cmtTools d-flex align-items-center">
                             <div className="cmtToolsBtn mr-auto">
                               <div>
-                                {/* <div
-                              className="replyBtn"
-                              onClick={() => {
-                                async function sendSid() {
-                                  await props.getReplyAsync(item.sid);
-                                }
-                                sendSid();      
-                                console.log(item.sid)                          
-                                // setOpen(!open);
-                              }}
-                            > */}
-
                                 <Accordion.Toggle
                                   as={Button}
                                   variant="link"
@@ -135,7 +118,6 @@ function MsgBoard(props) {
                                     }
                                     sendSid();
                                     console.log(item.sid);
-                                  
                                   }}
                                   eventKey={item.sid}
                                 >
@@ -187,61 +169,89 @@ function MsgBoard(props) {
                         <Accordion.Collapse eventKey={item.sid}>
                           <div className="cmtReply">
                             <ul className="cmtList">
-                              { 
-                                reply.map((item) => {
-                                return (
-                                  <li className="replyList">
-                                    <div className="d-flex no-gutters">
-                                      <div className="cmtReplyIco d-flex justify-content-center col-1">
-                                        <IconContext.Provider
-                                          value={{ className: 'replyArrow' }}
-                                        >
-                                          <BsArrowReturnRight />
-                                        </IconContext.Provider>
-                                      </div>
-                                      <div className="cmtBoxReplyArea col-11">
-                                        <div className="cmtInfo d-flex align-items-center">
-                                          <div className="userHeadIcon mr-2"></div>
-                                          <div className="replycmtSid"></div>
-                                          <div className="cmtNickname mr-auto">
-                                            {item.nickname}
-                                          </div>
-                                          <div className="cmtInfoDate">
-                                            {item.postTime2}
-                                          </div>
-                                        </div>
-                                        <div className="cmtTextWrap">
+                              {reply.map((item) => {
+                                if (item.empty)
+                                  return (
+                                    <li className="replyList">
+                                      <div className="d-flex no-gutters emptyReplyBox">
+                                        <div className="emptyReplyWrap mx-auto">
                                           <span className="cmtBoxContent">
-                                            {item.content}
+                                            目前沒有留言
                                           </span>
                                         </div>
-                                        <div className="cmtTools d-flex align-items-center">
-                                          <div className="cmtToolsBtn mr-auto">
-                                            <span className="cmtAccuseLink">
-                                              檢舉
+                                      </div>                                      
+                                    </li>
+                                  );
+                                else
+                                  return (
+                                    <li className="replyList">
+                                      <div className="d-flex no-gutters">
+                                        <div className="cmtReplyIco d-flex justify-content-center col-1">
+                                          <IconContext.Provider
+                                            value={{ className: 'replyArrow' }}
+                                          >
+                                            <BsArrowReturnRight />
+                                          </IconContext.Provider>
+                                        </div>
+                                        <div className="cmtBoxReplyArea col-11">
+                                          <div className="cmtInfo d-flex align-items-center">
+                                            <div className="userHeadIcon mr-2"></div>
+                                            <div className="replycmtSid"></div>
+                                            <div className="cmtNickname mr-auto">
+                                              {item.nickname}
+                                            </div>
+                                            <div className="cmtInfoDate">
+                                              {item.postTime2}
+                                            </div>
+                                          </div>
+                                          <div className="cmtTextWrap">
+                                            <span className="cmtBoxContent">
+                                              {item.content}
                                             </span>
                                           </div>
-
-                                          <div className="cmtToolsBtn pr-2">
-                                            <a href="">
-                                              <span className="material-icons pr-1">
-                                                thumb_up_alt
+                                          <div className="cmtTools d-flex align-items-center">
+                                            <div className="cmtToolsBtn ml-auto pr-2">
+                                              <a href="" className="pr-2">
+                                                <span className="material-icons pr-1">
+                                                  <IconContext.Provider
+                                                    value={{
+                                                      className: 'cmtToolsBtn',
+                                                    }}
+                                                  >
+                                                    <MdThumbUp />
+                                                  </IconContext.Provider>
+                                                </span>
+                                                <span>{item.upPoint}</span>
+                                              </a>
+                                              <a href="">
+                                                <span className="material-icons pr-1">
+                                                  <IconContext.Provider
+                                                    value={{
+                                                      className: 'cmtToolsBtn',
+                                                    }}
+                                                  >
+                                                    <MdThumbDown />
+                                                  </IconContext.Provider>
+                                                </span>
+                                                <span>{item.downPoint}</span>
+                                              </a>
+                                              <span className="cmtAccuseLink pl-2">
+                                                <IconContext.Provider
+                                                  value={{
+                                                    className: 'cmtToolsBtn',
+                                                  }}
+                                                >
+                                                  <MdReport />
+                                                </IconContext.Provider>
                                               </span>
-                                              <span>{item.upPoint}</span>
-                                            </a>
-                                            <a href="">
-                                              <span className="material-icons pr-1">
-                                                thumb_down_alt
-                                              </span>
-                                              <span>{item.downPoint}</span>
-                                            </a>
+                                            </div>
                                           </div>
                                         </div>
                                       </div>
-                                    </div>
-                                  </li>
-                                );
+                                    </li>
+                                  );
                               })}
+                              <MsgReplyInput />
                             </ul>
                           </div>
                         </Accordion.Collapse>
@@ -261,9 +271,10 @@ function MsgBoard(props) {
 }
 
 const mapStateToProps = (store) => {
-  return { 
+  return {
     msg: store.msgBoardReducer,
-    reply: store.replyReducer, };
+    reply: store.replyReducer,
+  };
 };
 export default connect(mapStateToProps, {
   getMsg,
