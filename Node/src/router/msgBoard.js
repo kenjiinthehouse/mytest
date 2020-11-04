@@ -5,7 +5,7 @@ const router = express.Router();
 
 //取得資料庫裡全部主留言
 async function getMsgList(req) {
-  let sql = `SELECT * FROM msgboard WHERE parentId = 0 ORDER BY sid DESC LIMIT 10`;
+  let sql = `SELECT * FROM msgboard WHERE parentId = 0 ORDER BY sid DESC`;
   const [sqlResult] = await db.query(sql);
   sqlResult.forEach((element) => {
     element.postTime2 = moment(element.postTime).format('YYYY-MM-DD');
@@ -72,6 +72,34 @@ router.post('/add', async (req, res) => {
   });
 });
 
+router.post('/add/reply', async (req, res) => {
+  const parentId = req.body.parentId;
+  const memberId = req.body.memberId;
+  const nickname = req.body.nickname;
+  const content = req.body.content;
+
+  const addSql =
+    'INSERT INTO `msgboard` VALUES(NULL,?,?,?,?,DEFAULT,DEFAULT,DEFAULT,NOW())';
+  const [{ affectedRows, insertId }] = await db.query(addSql, [
+    parentId,
+    memberId,
+    nickname,
+    content,
+  ]);
+  // [{"fieldCount":0,"affectedRows":1,"insertId":860,"info":"","serverStatus":2,"warningStatus":1},null]
+
+  res.json({
+    success: !!affectedRows,
+    affectedRows,
+    insertId,
+  });
+});
+
+
+module.exports = router;
+
+
+
 // //當 url 是 /post/:id 時, 取得某一筆資料
 // app.get('/post/:id', function(req, res, next){
 //   //取得 post.json 資料夾
@@ -83,8 +111,6 @@ router.post('/add', async (req, res) => {
 //     }
 //   })
 // });
-
-module.exports = router;
 
 /* RESTful API
     列表

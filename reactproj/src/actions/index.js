@@ -48,7 +48,7 @@ export const getReplyAsync = (sid) => {
     });
     const response = await fetch(request);
     const replyList = await response.json();
-    // console.log(replyList);
+    console.log('parentId給多少:',replyList);
     dispatch(getReply(replyList));
   };
 };

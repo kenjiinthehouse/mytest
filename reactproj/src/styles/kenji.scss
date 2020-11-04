@@ -16,7 +16,7 @@ html body {
 main > .container {
   margin-top: 6rem;
   max-width: 101rem;
-  max-height: 56.813rem;
+  min-height: 56.813rem;
 }
 
 .nav {
@@ -116,6 +116,7 @@ main > .container {
 
 .footer {
   background-color: #909393;
+  margin-top: 5rem;
 }
 
 .override {

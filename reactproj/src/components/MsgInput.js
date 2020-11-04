@@ -3,18 +3,16 @@ import { connect } from 'react-redux';
 import { IconContext } from 'react-icons';
 import { MdAddCircle } from 'react-icons/md';
 //引入留言
-// import { getMsg, getMsgAsync } from '../actions/index';
+import { getMsg, getMsgAsync } from '../actions/index';
 
 function MsgInput(props) {
   const [userId, setUserId] = useState('9527'); //memberId
   const [userNickname, setUserNickname] = useState('七星刀雷恩'); //nickname
-  const [textValue, setTextValue] = useState(''); //content
+  const [textValue, setTextValue] = useState(''); //content  
   const styleNone = {
     display: 'none',
   };
-  const styleForZIndex = {
-    zIndex: '10',
-  };
+
 
   const sendInput = async function () {
     const url = 'http://localhost:5566/msg/add';
@@ -36,6 +34,10 @@ function MsgInput(props) {
     console.log('data', data);
     //完成後清空輸入框
     setTextValue('')
+    async function msgList() {
+      await props.getMsgAsync();
+    }
+    msgList();
   };
 
   return (
@@ -86,7 +88,11 @@ function MsgInput(props) {
   );
 }
 
-// const mapStateToProps = (store) => {
-//   return { msg: store.msgBoardReducer };
-// };
-export default MsgInput;
+const mapStateToProps = (store) => {
+  return { msg: store.msgBoardReducer };
+};
+
+export default connect(mapStateToProps, {
+  getMsg,
+  getMsgAsync,
+})(MsgInput);
