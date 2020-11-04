@@ -5,7 +5,7 @@ const router = express.Router();
 
 //取得資料庫裡全部主留言
 async function getMsgList(req) {
-  let sql = `SELECT * FROM msgboard WHERE parentId = 0 ORDER BY sid DESC LIMIT 10`;
+  let sql = `SELECT * FROM msgboard WHERE parentId = 0 ORDER BY sid DESC`;
   const [sqlResult] = await db.query(sql);
   sqlResult.forEach((element) => {
     element.postTime2 = moment(element.postTime).format('YYYY-MM-DD');
