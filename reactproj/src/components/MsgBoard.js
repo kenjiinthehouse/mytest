@@ -19,6 +19,7 @@ import { getMsg, getMsgAsync, getReply, getReplyAsync } from '../actions/index';
 //引入輸入留言組件
 import MsgInput from './MsgInput';
 import MsgReplyInput from './MsgReplyInput';
+import PaginationRounded from './PaginationRounded';
 
 function MsgBoard(props) {
   const { msg, reply } = props;
@@ -272,6 +273,7 @@ function MsgBoard(props) {
                 })}
               </ul>
             </Accordion>
+            <PaginationRounded/>
           </div>
         </div>
       </div>
