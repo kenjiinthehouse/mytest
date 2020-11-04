@@ -75,7 +75,7 @@ function MyNavbar(props) {
   return (
     <Header className="d-flex row">
       <div className="logo col-3" />
-      <div className="col-1">
+      <div>
         <Button ref={anchorRef} onClick={handleToggle}>
           加入播客
         </Button>
@@ -111,31 +111,31 @@ function MyNavbar(props) {
           )}
         </Popper>
       </div>
-      <div className="col-1">
-        <Button href="https://tw.yahoo.com" className="col-2">
+      <div>
+        <Button href="https://tw.yahoo.com">
           探索
         </Button>
       </div>
-      <div className="col-1">
+      <div>
         <Button>商城</Button>
       </div>
-      <div className="col-1">
+      <div>
         <Button>專欄</Button>
       </div>
       <div className="diverVertical my-auto"></div>
-      <div className="col-1">
+      <div>
         <Button>註冊</Button>
       </div>
-      <div className="col-1">
+      <div>
         <Button>登入</Button>
       </div>
       <div className="diverVertical my-auto"></div>
-      <div className="col-1">
+      <div>
         <IconButton>
           <SearchIcon />
         </IconButton>
       </div>
-      <div className="col-1">
+      <div>
         <IconButton>
           <StyledBadge badgeContent={4} color="secondary">
             <ShoppingCartIcon />
