@@ -7,9 +7,10 @@ $myBtm: #405b55;
 @import '~bootstrap/scss/bootstrap.scss';
 // 其它要導入覆蓋掉原本的預設bootstrap樣式要放在這下面
 
-body {
+html body {
   background-color: $primary !important;
   color: #ffffff;
+  cursor: default;
 }
 
 main > .container {
@@ -144,8 +145,8 @@ a,
 a:active,
 a:focus,
 a:hover {
-  color: black;
-  text-decoration: none;
+  color: #ffffff !important;
+  text-decoration: none !important;
 }
 
 .ghost {
@@ -382,6 +383,13 @@ a:hover {
 //   background-repeat: no-repeat;
 // }
 
+.replyAccording {
+  cursor: pointer;
+}
+
+.pointAccording {
+  cursor: pointer;
+}
 // icon
 
 .addBtn {
@@ -403,4 +411,8 @@ a:hover {
 .replyArrow {
   font-size: 1rem;
   color: #ffffff;
+}
+
+.emptyReplyBox {
+  margin-bottom: 3em;
 }

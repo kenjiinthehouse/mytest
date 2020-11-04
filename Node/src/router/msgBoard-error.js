@@ -59,13 +59,13 @@ async function getMsgList(req) {
 }
 
 //根據前端送來的sid搜尋比對資料庫裡附隨主留言的留言 sid = parentId
-const replyCmtOutput = {
-  rCmtPage: 0, // 回應元件的頁數
-  rCmtPerPage: 10, //回應元件每頁幾筆留言
-  rCmtTotalRows: 0, //回應元件共有幾筆留言
-  rCmtTotalPage: 0, //回應元件共有幾頁
-  replyCmtRows: [], //回應
-};
+// const replyCmtOutput = {
+//   rCmtPage: 0, // 回應元件的頁數
+//   rCmtPerPage: 10, //回應元件每頁幾筆留言
+//   rCmtTotalRows: 0, //回應元件共有幾筆留言
+//   rCmtTotalPage: 0, //回應元件共有幾頁
+//   replyCmtRows: [], //回應
+// };
 
 async function getReplyList(req) {
   // let replyCmtSql = `SELECT * FROM msgboard WHERE parentId = ? ORDER BY sid DESC LIMIT ${
