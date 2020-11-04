@@ -2,16 +2,52 @@ import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { IconContext } from 'react-icons';
 import { MdAddCircle } from 'react-icons/md';
-//引入留言
-// import { getMsg, getMsgAsync } from '../actions/index';
+//引入留言 子留言
+import { getReply, getReplyAsync } from '../actions/index';
 
 function MsgReplyInput(props) {
+  const { parentId } = props;
+  const [userId, setUserId] = useState('5566'); //memberId
+  const [userNickname, setUserNickname] = useState('浪漫Duke'); //nickname
+  const [textValue, setTextValue] = useState(''); //content
+  
+  
   const styleNone = {
     display: 'none',
   };
-  const styleForZIndex = {
-    zIndex: '10',
-  };
+
+ const sendReply = async function () {
+   const url = 'http://localhost:5566/msg/add/reply';
+   const request = new Request(url, {
+     method: 'POST',
+     body: JSON.stringify({
+       parentId: parentId,
+       memberId: userId,
+       nickname: userNickname,
+       content: textValue,
+     }),
+     headers: new Headers({
+       Accept: 'application/json',
+       'Content-type': 'application/json',
+     }),
+   });
+
+   const response = await fetch(request);
+   const data = await response.json();
+   console.log('data', data);
+   //完成後清空輸入框
+   setTextValue('');
+   async function replyList() {
+     await props.getReplyAsync(parentId);
+   }
+   replyList();
+ };
+
+
+
+
+
+
 
   return (
     <>
@@ -22,11 +58,14 @@ function MsgReplyInput(props) {
               <legend className="ghost">留下評論</legend>
               <div>
                 <div className="userProfile">
+                  <span className="parentId" style={styleNone}>
+                    {parentId}
+                  </span>
                   <span className="userId" style={styleNone}>
-                    使用者Id:xxxxx
+                    {userId}
                   </span>
                   <span className="userNickname" style={styleNone}>
-                    使用者暱稱:BigJohn
+                    {userNickname}
                   </span>
                 </div>
                 <div className="writeCmt">
@@ -34,13 +73,15 @@ function MsgReplyInput(props) {
                     className="replyTextarea"
                     name="cmtTextarea"
                     id="cmtTextarea"
-                    cols="30"
+                    cols="20"
                     rows="3"
                     placeholder="輸入回應"
+                    value={textValue}
+                    onChange={(event)=> setTextValue(event.target.value)}
                   ></textarea>
                 </div>
                 <div className="cmtSendBox">
-                  <button type="button" className="cmtSendBtn">
+                  <button type="button" className="cmtSendBtn" onClick={()=>sendReply()}>
                     <IconContext.Provider value={{ className: 'addBtn' }}>
                       <MdAddCircle />
                     </IconContext.Provider>
@@ -55,7 +96,12 @@ function MsgReplyInput(props) {
   );
 }
 
-// const mapStateToProps = (store) => {
-//   return { msg: store.msgBoardReducer };
-// };
-export default MsgReplyInput;
+const mapStateToProps = (store) => {
+  return { reply: store.replyReducer };
+};
+
+export default connect(mapStateToProps, {
+  getReply,
+  getReplyAsync,
+})(MsgReplyInput);
+

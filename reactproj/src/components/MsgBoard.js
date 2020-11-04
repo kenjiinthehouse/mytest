@@ -23,6 +23,7 @@ import MsgReplyInput from './MsgReplyInput';
 function MsgBoard(props) {
   const { msg, reply } = props;
   const [isLoading, setIsLoading] = useState(false);
+  
 
   useEffect(() => {
     setIsLoading(true);
@@ -41,9 +42,7 @@ function MsgBoard(props) {
   const styleNone = {
     display: 'none',
   };
-  const styleForZIndex = {
-    zIndex: '10',
-  };
+
 
   const displayLoading = <></>;
 
@@ -179,7 +178,6 @@ function MsgBoard(props) {
                           <div className="cmtReply">
                             <ul className="cmtList">
                               {reply.map((item) => {
-
                                 if (item.empty)
                                   return (
                                     <li className="replyList">
@@ -261,7 +259,10 @@ function MsgBoard(props) {
                                     </li>
                                   );
                               })}
-                              <MsgReplyInput />
+                              <MsgReplyInput
+                                parentId={item.sid}
+                               
+                              />
                             </ul>
                           </div>
                         </Accordion.Collapse>
