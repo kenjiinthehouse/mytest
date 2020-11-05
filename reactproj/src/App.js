@@ -5,6 +5,7 @@ import 'antd/dist/antd.css';
 import './styles/kenji.scss'
 // 基本元件
 import MyNavbar from './components/MyNavbar';
+import MyFooter from './components/MyFooter';
 
 
 // 使用 react router 管理
@@ -28,7 +29,7 @@ function App() {
             </Route>
           </Switch>
         </Content>
-        <Footer>Footer</Footer>
+        <MyFooter/>
       </Layout>
     </Router>
   );
