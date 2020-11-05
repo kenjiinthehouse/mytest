@@ -25,7 +25,7 @@ function App() {
           <Switch>
             {/* 注意：要加上網址參數 */}
             <Route exact path="/">
-              <MsgBoard />
+              {/* <MsgBoard /> */}
             </Route>
           </Switch>
         </Content>
