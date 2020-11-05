@@ -12,7 +12,15 @@ $myBtm: #405b55;
 .ant-layout-footer {
   color: #fff;
   background: $primary;
+  min-width: 100%;
+  min-height: 3rem;
 }
+
+.ant-layout-header {
+  position: fixed;
+  z-index: 10;
+}
+
 .ant-layout-footer {
   line-height: 1.5;
 }
@@ -38,16 +46,39 @@ $myBtm: #405b55;
   padding: 0px;
 }
 
+//Nav
+header .MuiButton-label,
+header .MuiIconButton-label {
+  color: #ffffff;
+}
+@media (min-width: 1000px) {
+  .MuiButtonBase-root.MuiButton-root.MuiButton-text.navBarCollapse {
+    display: none !important;
+  }
+  Header .navBarLogInBtn {
+    display: none !important;
+  }
+}
+@media (max-width: 1000px) {
+  Header .navBarBtn {
+    display: none !important;
+  }
+}
+.MuiList-padding {
+  background-color: $primary;
+}
+.MuiButtonBase-root.MuiButton-root.MuiButton-text {
+  padding: 0px;
+}
+
 html body {
   // background-color: $primary !important;
   // color: #ffffff;
   cursor: default;
 }
 
-main > .container {
-  margin-top: 6rem;
-  max-width: 101rem;
-  min-height: 56.813rem;
+.ant-layout-content {
+  margin-top: 3rem;
 }
 
 .logo {
@@ -58,47 +89,6 @@ main > .container {
   background-image: url(../img/logofordark.svg);
   background-position: center;
   background-repeat: no-repeat;
-}
-
-.rs-carousel {
-  width: 100rem !important;
-  height: 57rem !important;
-}
-
-.indexCarousel {
-  position: relative;
-}
-
-.carouselButton {
-  width: 32.938rem;
-  height: 7.188rem;
-  border-radius: 58px;
-  background-color: #f8f8f8;
-  position: absolute;
-  right: 40rem;
-  bottom: 25rem;
-  z-index: 10;
-}
-
-.carouselButtonBack {
-  width: 32.938rem;
-  height: 7.188rem;
-  border-radius: 58px;
-  background-color: #b9e3ff;
-  position: absolute;
-  right: 41rem;
-  bottom: 24rem;
-  z-index: 9;
-}
-
-.carouselBanner {
-  width: 62.875rem;
-  height: 14.188rem;
-  -webkit-backdrop-filter: blur(4px);
-  backdrop-filter: blur(4px);
-  background-color: #201f1f0e;
-  position: absolute;
-  top: 40rem;
 }
 
 .footer {
