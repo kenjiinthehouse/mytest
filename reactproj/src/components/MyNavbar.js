@@ -1,71 +1,151 @@
-import React, { useState, useEffect } from 'react';
-import {
-  Navbar,
-  Nav,
-  Form,
-  FormControl,
-  Button,
-  NavDropdown,
-} from 'react-bootstrap';
-import { MdShoppingCart, MdSearch, } from 'react-icons/md';
-//選單連結使用 NavLink 取代 Link，不然有CSS上的問題
-import { NavLink } from 'react-router-dom';
-import logo from '../img/logofordark.svg';
+import React from 'react';
+// 使用 ant-design布局及元件
+import { Layout } from 'antd';
+// 使用 material-ui 元件
+import Button from '@material-ui/core/Button';
+import ClickAwayListener from '@material-ui/core/ClickAwayListener';
+import Grow from '@material-ui/core/Grow';
+import Paper from '@material-ui/core/Paper';
+import Popper from '@material-ui/core/Popper';
+import MenuItem from '@material-ui/core/MenuItem';
+import MenuList from '@material-ui/core/MenuList';
+import { makeStyles } from '@material-ui/core/styles';
+import IconButton from '@material-ui/core/IconButton'; // icon式btn
+import Badge from '@material-ui/core/Badge'; //購物車徽章
+import { withStyles } from '@material-ui/core/styles'; //購物車徽章
+// 使用 material-ui icon
+import SearchIcon from '@material-ui/icons/Search'; 
+import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
+
+// ant-design Layout
+const { Header } = Layout;
+// material-ui 
+const useStyles = makeStyles((theme) => ({
+  root: {
+    display: 'flex',
+  },
+  paper: {
+    marginRight: theme.spacing(2),
+  },
+}));
+// 購物車徽章
+const StyledBadge = withStyles((theme) => ({
+  badge: {
+    right: -2,
+    top: 0,
+    // border: `1px none ${theme.palette.background.paper}`,
+    padding: '0px',
+  },
+}))(Badge);
 
 function MyNavbar(props) {
+  const classes = useStyles();
+  const [open, setOpen] = React.useState(false);
+  const anchorRef = React.useRef(null);
+
+  const handleToggle = () => {
+    setOpen((prevOpen) => !prevOpen);
+  };
+
+  const handleClose = (event) => {
+    if (anchorRef.current && anchorRef.current.contains(event.target)) {
+      return;
+    }
+
+    setOpen(false);
+  };
+
+  function handleListKeyDown(event) {
+    if (event.key === 'Tab') {
+      event.preventDefault();
+      setOpen(false);
+    }
+  }
+
+  // return focus to the button when we transitioned from !open -> open
+  const prevOpen = React.useRef(open);
+  React.useEffect(() => {
+    if (prevOpen.current === true && open === false) {
+      anchorRef.current.focus();
+    }
+
+    prevOpen.current = open;
+  }, [open]);
+
   return (
-    <>
-      <Navbar
-        collapseOnSelect
-        expand="lg"
-        className="nav"
-        variant="dark"
-        fixed="top"
-      >
-        {/* <Navbar.Brand className="navLogo" as={NavLink} to="/" exact>
-          <img src={logo} className="logo" alt="logo" />
-        </Navbar.Brand> */}
-        <Nav.Link className="navLogo flex-shrink-1" as={NavLink} to="/tod22o">
-          <img src={logo} className="logo" alt="logo" />
-        </Nav.Link>
-        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-        <Navbar.Collapse id="responsive-navbar-nav">
-          <Nav className="ml-auto navBtns">
-            {/* 把Nav.Link作為NavLink來使用 */}
-            {/* 一定要加上exact，不然首頁會一直點亮(active) */}
-            <Nav.Link as={NavLink} to="/todo" className="">
-              加入播客
-            </Nav.Link>
-            <Nav.Link as={NavLink} to="/product">
-              探索
-            </Nav.Link>
-            <Nav.Link as={NavLink} to="/login">
-              商城
-            </Nav.Link>
-            <Nav.Link as={NavLink} to="/register">
-              專欄
-            </Nav.Link>
-          </Nav>
-          <Nav className="navBtns2">
-            <Nav.Link as={NavLink} to="/profile" className="">
-              註冊
-            </Nav.Link>
-            <Nav.Link as={NavLink} to="/counter">
-              登入
-            </Nav.Link>
-          </Nav>
-          <Nav className="navBtns3">
-            <Nav.Link as={NavLink} to="/search">
-              <MdSearch />
-            </Nav.Link>
-            <Nav.Link as={NavLink} to="/cart">
-              <MdShoppingCart />
-            </Nav.Link>
-          </Nav>
-        </Navbar.Collapse>
-      </Navbar>
-    </>
+    <Header className="d-flex row">
+      <div className="logo col-3" />
+      <div>
+        <Button ref={anchorRef} onClick={handleToggle}>
+          加入播客
+        </Button>
+        <Popper
+          open={open}
+          anchorEl={anchorRef.current}
+          role={undefined}
+          transition
+          disablePortal
+        >
+          {({ TransitionProps, placement }) => (
+            <Grow
+              {...TransitionProps}
+              style={{
+                transformOrigin:
+                  placement === 'bottom' ? 'center top' : 'center bottom',
+              }}
+            >
+              <Paper>
+                <ClickAwayListener onClickAway={handleClose}>
+                  <MenuList
+                    autoFocusItem={open}
+                    id="menu-list-grow"
+                    onKeyDown={handleListKeyDown}
+                  >
+                    <MenuItem onClick={handleClose}>item-1</MenuItem>
+                    <MenuItem onClick={handleClose}>item-2</MenuItem>
+                    <MenuItem onClick={handleClose}>item-3</MenuItem>
+                  </MenuList>
+                </ClickAwayListener>
+              </Paper>
+            </Grow>
+          )}
+        </Popper>
+      </div>
+      <div>
+        <Button href="https://tw.yahoo.com">
+          探索
+        </Button>
+      </div>
+      <div>
+        <Button>商城</Button>
+      </div>
+      <div>
+        <Button>專欄</Button>
+      </div>
+      <div className="diverVertical my-auto"></div>
+      <div>
+        <Button>註冊</Button>
+      </div>
+      <div>
+        <Button>登入</Button>
+      </div>
+      <div className="diverVertical my-auto"></div>
+      <div>
+        <IconButton>
+          <SearchIcon />
+        </IconButton>
+      </div>
+      <div>
+        <IconButton>
+          <StyledBadge badgeContent={4} color="secondary">
+            <ShoppingCartIcon />
+          </StyledBadge>
+        </IconButton>
+      </div>
+    </Header>
   );
 }
 
 export default MyNavbar;
+
+// <div className="diverVertical"></div>
