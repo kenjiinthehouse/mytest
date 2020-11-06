@@ -234,6 +234,13 @@ main {
   background-color: rgba($color: #232d2f, $alpha: 0.5);
   position: absolute;
 }
+.indexCarousel .CarouselItem .MuiPaper-root button {
+  position: absolute;
+  background-color: red;
+  // z-index: 10;
+  right: 50%;
+  bottom: 0;
+}
 
 //msg Board
 .cmtArea {
