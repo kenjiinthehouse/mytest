@@ -87,6 +87,7 @@ a:hover {
   background-position: center;
   background-repeat: no-repeat;
 }
+////////////////////////////////////FOOTER START//////////////////////////////////////
 // footer
 .ant-layout-footer {
   color: #fff;
@@ -194,7 +195,7 @@ a:hover {
   position: absolute;
   bottom: 0;
 }
-
+////////////////////////////////////FOOTER END//////////////////////////////////////
 .ghost {
   overflow: hidden;
   position: absolute;
@@ -210,28 +211,32 @@ main {
   margin-top: 4rem;
   background-color: #232d2f;
 }
-// Index Carousel
+////////////////////////////////////Carosel START//////////////////////////////////////
+// Index Carousel content
 .indexCarousel {
   width: 101rem;
   margin-top: 4rem;
   margin-bottom: 40rem;
 }
-
+// Carousel card
 .indexCarousel .CarouselItem {
   width: 101rem;
   height: 56.813rem;
 }
-
+// img of Carousel card content
 .indexCarousel .CarouselItem .MuiPaper-root {
   width: 101rem;
   height: 56.813rem;
   position: relative;
   overflow: hidden;
 }
+// img 實體
 .indexCarousel .CarouselItem .MuiPaper-root img {
   width: 100%;
-  // height: 100%;
+  // height: 100%; //設了會容易爆版蓋掉 carousel dot
 }
+
+// Carousel info p
 .indexCarousel .CarouselItem .MuiPaper-root p::before {
   content: '';
   position: absolute;
@@ -261,6 +266,7 @@ main {
   text-align: left;
 }
 
+// Carousel Btn
 .indexCarousel .CarouselItem .MuiPaper-root button {
   width: 32.938rem;
   height: 7.188rem;
@@ -308,7 +314,9 @@ main {
   right: 10%;
   top: 75%;
 }
+////////////////////////////////////Carosel END//////////////////////////////////////
 
+////////////////////////////////////MSG BOARD START//////////////////////////////////////
 //msg Board
 .cmtArea {
   /* border: 1px solid black; */
@@ -570,3 +578,4 @@ main {
 .emptyReplyBox {
   margin-bottom: 3em;
 }
+////////////////////////////////////MSG BOARD END//////////////////////////////////////
