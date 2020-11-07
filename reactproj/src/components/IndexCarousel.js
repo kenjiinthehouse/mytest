@@ -42,16 +42,19 @@ function IndexCarousel(props) {
   ];
 
   return (
-    <Carousel
-      className="indexCarousel mx-auto"
-      autoPlay={false}
-      indicators={true}
-      navButtonsAlwaysVisible={true}
-    >
-      {items.map((item, i) => (
-        <Item key={i} item={item} />
-      ))}
-    </Carousel>
+    <>
+      <Carousel
+        className="indexCarousel mx-auto"
+        autoPlay={false}
+        indicators={true}
+        navButtonsAlwaysVisible={true}
+      >
+        {items.map((item, i) => (
+          <Item key={i} item={item} />
+        ))}
+      </Carousel>
+      <div className="indexColorCard"></div>
+    </>
   );
 }
 

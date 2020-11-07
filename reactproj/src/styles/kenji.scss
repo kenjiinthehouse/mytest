@@ -213,11 +213,24 @@ main {
 }
 ////////////////////////////////////Carosel START//////////////////////////////////////
 // Index Carousel content
+
 .indexCarousel {
   width: 101rem;
-  margin-top: 4rem;
-  margin-bottom: 40rem;
+  margin-top: 2rem;
+  margin-bottom: 4rem;
+  z-index: 1;
 }
+.indexColorCard {
+  width: 100%;
+  height: 50rem;
+  background-color: #0e4065;
+  position: absolute;
+  left: 0;
+  top: 15%;
+  z-index: 0;
+  transform: skewY(5deg);
+}
+
 // Carousel card
 .indexCarousel .CarouselItem {
   width: 101rem;
@@ -578,4 +591,4 @@ main {
 .emptyReplyBox {
   margin-bottom: 3em;
 }
-////////////////////////////////////MSG BOARD END//////////////////////////////////////
+////////////////////////////////////MSG END//////////////////////////////////////
