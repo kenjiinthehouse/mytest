@@ -10,29 +10,34 @@ import IndexC5 from '../img/IndexC5.jpg';
 function IndexCarousel(props) {
   let items = [
     {
-      name: '國際狗語日報X百靈果News',
+      name: '百靈果NEWS',
       description: `“重新定義你對的自由的想像華語最自由的PODCAST頻道”`,
       img: IndexBailingguoNews,
+      click: '>>去聽聽',
     },
     {
       name: 'Random Name #2',
       description: 'Hello World!',
       img: IndexC2,
+      click: '>>去聽聽',
     },
     {
       name: 'Random Name #3',
       description: 'Hello World!',
       img: IndexC3,
+      click: '>>去聽聽',
     },
     {
       name: 'Random Name #4',
       description: 'Hello World!',
       img: IndexC4,
+      click: '>>去聽聽',
     },
     {
       name: 'Random Name #5',
       description: 'Hello World!',
       img: IndexC5,
+      click: '>>去聽聽',
     },
   ];
 
@@ -56,7 +61,10 @@ function Item(props) {
       {/* <h2>{props.item.name}</h2> */}
       <p>{props.item.description}</p>
       <img src={props.item.img} />
-      <Button className="CheckButton">Check it out!</Button>
+      <Button className="CheckButton">
+        <label className="clickLabel">{props.item.click}</label>
+        {props.item.name}
+      </Button>
     </Paper>
   );
 }

@@ -272,20 +272,42 @@ main {
   z-index: 10;
 }
 
-.indexCarousel .CarouselItem .MuiPaper-root button::after {
-  content: '';
-  position: absolute;
-  z-index: -1;
-  width: 32.938rem;
-  height: 7.188rem;
-  border-radius: 58px;
-  background-color: red;
-  left: -2%;
-  bottom: -5%;
-}
-// .indexCarousel .CarouselItem .MuiPaper-root span {
-//   z-index: 100;
+// .indexCarousel .CarouselItem .MuiPaper-root button::after {
+//   content: '';
+//   position: absolute;
+//   z-index: -1;
+//   width: 32.938rem;
+//   height: 7.188rem;
+//   border-radius: 58px;
+//   background-color: red;
+//   left: -2%;
+//   bottom: -5%;
 // }
+.indexCarousel
+  .CarouselItem
+  .MuiPaper-root
+  .MuiButtonBase-root
+  .MuiButton-label {
+  font-size: 3rem;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.5;
+  letter-spacing: normal;
+}
+.indexCarousel .CarouselItem .MuiPaper-root .MuiButtonBase-root .clickLabel {
+  font-size: 1.25rem;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 0.9;
+  letter-spacing: 1px;
+  text-align: left;
+  color: #2690df;
+  position: absolute;
+  right: 10%;
+  top: 75%;
+}
 
 //msg Board
 .cmtArea {
