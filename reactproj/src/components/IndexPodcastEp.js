@@ -1,10 +1,11 @@
 import React from 'react';
 import '../styles/IndexPodcastEp.scss';
 
-
+const changeC = function Carousel() {
+  
+};
 
 function IndexPodcastEp(props) {
-
   return (
     <>
       <div className="card-movie-container">
@@ -244,7 +245,11 @@ function IndexPodcastEp(props) {
           {/* <!-- /.card-movie-carousel --> */}
 
           <div className="card-movie-navigation">
-            <ul className="card-movie-navigation__list" data-navigation>
+            <ul
+              className="card-movie-navigation__list"
+              data-navigation
+              onClick={() => {}}
+            >
               <li className="is-active"></li>
               <li></li>
               <li></li>
@@ -259,10 +264,8 @@ function IndexPodcastEp(props) {
           {/* <!-- /.card-movie-navigation --> */}
         </div>
         {/* <!-- /.card-movie-wrapper --> */}
-        
       </div>
-      
-   </>
+    </>
   );
 }
 
