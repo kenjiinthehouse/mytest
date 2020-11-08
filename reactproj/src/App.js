@@ -16,6 +16,7 @@ import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 import MsgBoard from './components/MsgBoard';
 import IndexCarousel from './components/IndexCarousel';
 import IndexInfo from './components/IndexInfo';
+import IndexPodcastEp from './components/IndexPodcastEp';
 
 
 const { Header, Footer, Sider, Content } = Layout;
@@ -29,7 +30,8 @@ function App() {
             {/* 注意：要加上網址參數 */}
             <Route exact path="/">
               <IndexCarousel />
-              <IndexInfo/>
+              <IndexInfo />
+              <IndexPodcastEp />
               {/* <MsgBoard /> */}
             </Route>
           </Switch>
