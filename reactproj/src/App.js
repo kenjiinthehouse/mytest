@@ -15,6 +15,7 @@ import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 // import Counter2 from './pages/Counter2';
 import MsgBoard from './components/MsgBoard';
 import IndexCarousel from './components/IndexCarousel';
+import IndexInfo from './components/IndexInfo';
 
 
 const { Header, Footer, Sider, Content } = Layout;
@@ -28,11 +29,12 @@ function App() {
             {/* 注意：要加上網址參數 */}
             <Route exact path="/">
               <IndexCarousel />
+              <IndexInfo/>
               {/* <MsgBoard /> */}
             </Route>
           </Switch>
         </MainContent>
-        {/* <MyFooter /> */}
+        <MyFooter />
       </Layout>
     </Router>
   );
