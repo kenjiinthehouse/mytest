@@ -31,6 +31,7 @@ function App() {
             <Route exact path="/">
               <IndexCarousel />
               <IndexInfo />
+              
               <IndexPodcastEp />
               {/* <MsgBoard /> */}
             </Route>
