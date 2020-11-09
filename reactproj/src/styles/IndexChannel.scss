@@ -36,6 +36,10 @@
   margin-left: 20rem;
   margin-top: 3rem;
 }
+.active {
+  border-bottom: steelblue 3px solid;
+  transition: left 250ms ease-in-out, right 250ms ease-in-out;
+}
 .IndexChannelPageBox .IndexChannelPageBoxCate button {
   width: 100%;
   margin-top: 1rem;
