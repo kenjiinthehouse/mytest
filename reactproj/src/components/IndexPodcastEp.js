@@ -1,5 +1,9 @@
 import React from 'react';
 import '../styles/IndexPodcastEp.scss';
+import Button from '@material-ui/core/Button';
+import { BiFastForward } from 'react-icons/bi';
+
+
 let current = 0;
 function IndexPodcastEp(props) {
   function handleActiveDot(e) {
@@ -28,25 +32,14 @@ function IndexPodcastEp(props) {
 
     // console.log(e.target)
   }
-  // function handleActiveCard(e) {
-  //   if (
-  //     e.target
-  //       .closest('.card-movie-carousel')
-  //       .querySelector('.card-movie--active')
-  //   ) {
-  //     // console.log('HI')
-  //     e.target
-  //       .closest('.card-movie-carousel')
-  //       .querySelector('.card-movie--active')
-  //       .classList.remove('card-movie--active');
-  //   }
-  //   e.target.classList.add('card-movie--active');
-  //   // console.log(e.target)
-  // }
+
 
   return (
     <>
       <div className="card-movie-container">
+        <div className="IndexChannelEpTitleBox d-flex">
+          <h3 className="IndexChannelEpTitle mx-auto my-auto">熱門單集</h3>
+        </div>
         <div className="card-movie-wrapper card-movie-wrapper--centered mx-auto">
           <div className="card-movie-carousel">
             <div className="card-movie card-movie--light card-movie--looper card-movie--active">
@@ -297,7 +290,10 @@ function IndexPodcastEp(props) {
             </ul>
             {/* <!-- /.card-movie-navigation__list --> */}
 
-            <button type="button" data-play></button>
+            <Button className=" d-flex mt-2 mx-auto">
+                  更多優質內容
+            <BiFastForward />
+            </Button>
           </div>
           {/* <!-- /.card-movie-navigation --> */}
         </div>
