@@ -1,14 +1,45 @@
 import React from 'react';
 import '../styles/IndexPodcastEp.scss';
+import Button from '@material-ui/core/Button';
+import { BiFastForward } from 'react-icons/bi';
 
-const changeC = function Carousel() {
-  
-};
 
+let current = 0;
 function IndexPodcastEp(props) {
+  function handleActiveDot(e) {
+    let current = e.target.dataset.id;
+    // console.log(current);
+    if (
+      e.target
+        .closest('.card-movie-navigation__list')
+        .querySelector('.is-active')
+    ) {
+      // console.log('HI')
+      e.target
+        .closest('.card-movie-navigation__list')
+        .querySelector('.is-active')
+        .classList.remove('is-active');
+    }
+    e.target.classList.add('is-active');
+
+    document
+      .querySelector('.card-movie-carousel')
+      .querySelector('.card-movie--active')
+      .classList.remove('card-movie--active');
+    document
+      .querySelectorAll('.card-movie')
+      [current].classList.add('card-movie--active');
+
+    // console.log(e.target)
+  }
+
+
   return (
     <>
       <div className="card-movie-container">
+        <div className="IndexChannelEpTitleBox d-flex">
+          <h3 className="IndexChannelEpTitle mx-auto my-auto">熱門單集</h3>
+        </div>
         <div className="card-movie-wrapper card-movie-wrapper--centered mx-auto">
           <div className="card-movie-carousel">
             <div className="card-movie card-movie--light card-movie--looper card-movie--active">
@@ -245,25 +276,30 @@ function IndexPodcastEp(props) {
           {/* <!-- /.card-movie-carousel --> */}
 
           <div className="card-movie-navigation">
-            <ul
-              className="card-movie-navigation__list"
-              data-navigation
-              onClick={() => {}}
-            >
-              <li className="is-active"></li>
-              <li></li>
-              <li></li>
-              <li></li>
-              <li></li>
-              <li></li>
+            <ul className="card-movie-navigation__list" data-navigation>
+              <li
+                className="is-active"
+                onClick={(e) => handleActiveDot(e)}
+                data-id="0"
+              ></li>
+              <li onClick={(e) => handleActiveDot(e)} data-id="1"></li>
+              <li onClick={(e) => handleActiveDot(e)} data-id="2"></li>
+              <li onClick={(e) => handleActiveDot(e)} data-id="3"></li>
+              <li onClick={(e) => handleActiveDot(e)} data-id="4"></li>
+              <li onClick={(e) => handleActiveDot(e)} data-id="5"></li>
             </ul>
             {/* <!-- /.card-movie-navigation__list --> */}
 
-            <button type="button" data-play></button>
+            <Button className=" d-flex mt-2 mx-auto">
+              更多優質內容
+              <BiFastForward />
+            </Button>
           </div>
           {/* <!-- /.card-movie-navigation --> */}
         </div>
         {/* <!-- /.card-movie-wrapper --> */}
+
+        <div className="EpColorCard"></div>
       </div>
     </>
   );

@@ -17,6 +17,7 @@ import MsgBoard from './components/MsgBoard';
 import IndexCarousel from './components/IndexCarousel';
 import IndexInfo from './components/IndexInfo';
 import IndexPodcastEp from './components/IndexPodcastEp';
+import IndexChannel from './components/IndexChannel';
 
 
 const { Header, Footer, Sider, Content } = Layout;
@@ -31,6 +32,7 @@ function App() {
             <Route exact path="/">
               <IndexCarousel />
               <IndexInfo />
+              <IndexChannel />
               <IndexPodcastEp />
               {/* <MsgBoard /> */}
             </Route>

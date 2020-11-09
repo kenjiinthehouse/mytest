@@ -10,10 +10,26 @@ $card-hover-offset-x: 40px;
 $card-hover-offset-y: 60px;
 @import '~bootstrap/scss/bootstrap.scss';
 .card-movie-container {
+  width: 100%;
+  height: 36.5rem;
   margin-top: 5rem;
   margin-bottom: 5rem;
+  // background-color: #ccc;
+  position: relative;
+  z-index: 1;
 }
 
+.card-movie-container .EpColorCard {
+  width: 100%;
+  height: 50rem;
+  background-color: #909393;
+  border: solid 1px #707070;
+  position: absolute;
+  left: 0;
+  top: 15%;
+  z-index: 0;
+  transform: skewY(5deg);
+}
 *,
 *:before,
 *:after {
@@ -32,11 +48,37 @@ $card-hover-offset-y: 60px;
 }
 // %clearfix
 
-.card-movie-wrapper {
+.IndexChannelEpTitleBox {
+  width: 23.875rem;
+  height: 4rem;
+  border-radius: 5px;
+  background-color: #2690df;
+  position: relative;
+  margin-left: 13.375rem;
+  z-index: 2;
+}
+.IndexChannelEpTitleBox .IndexChannelEpTitle {
+  padding: 0px;
+  margin: 0px;
+  width: 9.75rem;
+  height: 3.563rem;
+  font-family: NotoSansTC;
+  font-size: 2.438rem;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.46;
+  letter-spacing: normal;
+  text-align: left;
+  color: #ffffff;
+}
+
+.card-movie-container .card-movie-wrapper {
   box-shadow: 0px 0px 100px 25px rgba($color-black, 0.2);
   height: $card-height;
   position: relative;
   width: $card-width;
+  margin-top: 4rem;
 
   &:hover {
     .card-movie-carousel {
@@ -53,6 +95,7 @@ $card-hover-offset-y: 60px;
 // .card-movie-wrapper
 
 .card-movie-wrapper--centered {
+  // margin-top: 100rem;
   // -webkit-transform: translate(-50%, -50%);
   //    -moz-transform: translate(-50%, -50%);
   //     -ms-transform: translate(-50%, -50%);
@@ -93,11 +136,12 @@ $card-hover-offset-y: 60px;
     -moz-transform: translateY(-50%);
     -ms-transform: translateY(-50%);
     -o-transform: translateY(-50%);
-    transform: translateY(-50%);
+    // transform: translateY(-50%);
     position: absolute;
-    right: ($card-hover-offset-x - $item-size) / 2;
+    // right: ($card-hover-offset-x - $item-size) / 2;
+    right: 1%;
     top: 50%;
-    width: $item-size-active;
+    // width: $item-size-active;
 
     li {
       -webkit-transition: all $transition-time $transition-method;
@@ -148,28 +192,28 @@ $card-hover-offset-y: 60px;
     position: absolute;
     right: $card-hover-offset-x;
 
-    &:before {
-      content: 'Watch Trailer';
-    }
+    // &:before {
+    //   content: 'Watch Trailer';
+    // }
     // &:before
 
-    &:after {
-      -webkit-transform: translateY(-50%);
-      -moz-transform: translateY(-50%);
-      -ms-transform: translateY(-50%);
-      -o-transform: translateY(-50%);
-      transform: translateY(-50%);
-      border-bottom: $arrow-size solid transparent;
-      border-left: $arrow-size solid #dce9e9;
-      border-top: $arrow-size solid transparent;
-      content: '';
-      height: 0;
-      margin-right: $arrow-size;
-      position: absolute;
-      right: 100%;
-      top: 50%;
-      width: 0;
-    }
+    // &:after {
+    //   -webkit-transform: translateY(-50%);
+    //   -moz-transform: translateY(-50%);
+    //   -ms-transform: translateY(-50%);
+    //   -o-transform: translateY(-50%);
+    //   transform: translateY(-50%);
+    //   border-bottom: $arrow-size solid transparent;
+    //   border-left: $arrow-size solid #dce9e9;
+    //   border-top: $arrow-size solid transparent;
+    //   content: '';
+    //   height: 0;
+    //   margin-right: $arrow-size;
+    //   position: absolute;
+    //   right: 100%;
+    //   top: 50%;
+    //   width: 0;
+    // }
     // &:after
 
     &.is-playing {
