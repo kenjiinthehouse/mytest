@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // global vars
+      var players = [],
+        current = 0;
+
+      // YouTube iFrame API Ready
+      function onYouTubeIframeAPIReady() {
+        document.querySelector('[data-trailer]').each(function () {
+          var player,
+            id = document.querySelector(this).data('trailer');
+
+          document
+            .querySelector(this)
+            .html(
+              '<iframe id="player_' +
+                id +
+                '" src="https://www.youtube.com/embed/' +
+                id +
+                '?enablejsapi=1&autohide=1&showinfo=0&theme=light" frameborder="0" allowfullscreen></iframe>'
+            );
+
+          player = new YT.Player('player_' + id, {
+            events: {
+              onStateChange: onPlayerStateChange,
+            },
+          });
+
+          players.push(player);
+        });
+      }
+
+      // YouTube On Player State Change
+      function onPlayerStateChange(event) {
+        var player = players[current];
+
+        switch (event.data) {
+          case YT.PlayerState.ENDED:
+            player.stopVideo();
+            player.seekTo(0);
+            document
+              .querySelector('.card-movie--playing')
+              .removeClass('card-movie--playing');
+            document.querySelector('[data-play]').removeClass('is-playing');
+            break;
+        }
+      }
+
+      document.querySelector(function () {
+        document
+          .querySelector('[data-play]')
+          .addEventListener('click', function () {
+            var $card = document.querySelector('.card-movie--active'),
+              player = players[$card.index()];
+
+            if ($card.classList.contains('card-movie--playing')) {
+              document.querySelector(this).classList.toggle('is-playing');
+              player.pauseVideo();
+            } else {
+              document.querySelector(this).classList.toggle('is-playing');
+              player.playVideo();
+            }
+
+            $card.classList.toggle('card-movie--playing');
+          });
+
+        document
+          .querySelector('[data-navigation] li')
+          .addEventListener('click', function () {
+            // remove current stuff
+            players[current].pauseVideo();
+            document
+              .querySelector('.card-movie:eq(' + current + ')')
+              .removeClass('card-movie--playing card-movie--active');
+            document.querySelector('[data-play]').removeClass('is-playing');
+            // assign new current
+            current = document.querySelector(this).index();
+            document
+              .querySelector(this)
+              .classList.add('is-active')
+              .siblings()
+              .removeClass('is-active');
+            document
+              .querySelector('.card-movie:eq(' + current + ')')
+              .classList.add('card-movie--active');
+          });
+      });
+    </script>
+  </body>
+</html>

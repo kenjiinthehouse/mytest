@@ -87,6 +87,7 @@ a:hover {
   background-position: center;
   background-repeat: no-repeat;
 }
+////////////////////////////////////FOOTER START//////////////////////////////////////
 // footer
 .ant-layout-footer {
   color: #fff;
@@ -108,7 +109,7 @@ a:hover {
       rgba(35, 24, 21, 1) 100%
     ),
     url(../img/drew-perales-EdFfvBmAgJs-unsplash.jpg);
-
+  background-size: 100%; //RWD
   background-position: center;
   background-repeat: no-repeat;
   // opacity: 0.5;
@@ -194,7 +195,7 @@ a:hover {
   position: absolute;
   bottom: 0;
 }
-
+////////////////////////////////////FOOTER END//////////////////////////////////////
 .ghost {
   overflow: hidden;
   position: absolute;
@@ -210,41 +211,271 @@ main {
   margin-top: 4rem;
   background-color: #232d2f;
 }
-// Index Carousel
+////////////////////////////////////Carosel START//////////////////////////////////////
+// Index Carousel content
+
 .indexCarousel {
   width: 101rem;
-  margin-top: 4rem;
-  // margin-left: 9.5rem;
-  // margin-right: 9.5rem;
+  margin-top: 2rem;
+  margin-bottom: 4rem;
+  z-index: 1;
+}
+.indexColorCard {
+  width: 100%;
+  height: 50rem;
+  background-color: #0e4065;
+  position: absolute;
+  left: 0;
+  top: 15%;
+  z-index: 0;
+  transform: skewY(5deg);
 }
 
+// Carousel card
 .indexCarousel .CarouselItem {
   width: 101rem;
+  height: 56.813rem;
 }
-
+// img of Carousel card content
 .indexCarousel .CarouselItem .MuiPaper-root {
-  // background-color: red;
   width: 101rem;
+  height: 56.813rem;
   position: relative;
-  // display: flex;
+  overflow: hidden;
+  border-radius: 5px;
 }
+// img 實體
 .indexCarousel .CarouselItem .MuiPaper-root img {
   width: 100%;
-}
-.indexCarousel .CarouselItem .MuiPaper-root p {
-  width: 100px;
-  height: 100px;
-  background-color: rgba($color: #232d2f, $alpha: 0.5);
-  position: absolute;
-}
-.indexCarousel .CarouselItem .MuiPaper-root button {
-  position: absolute;
-  background-color: red;
-  // z-index: 10;
-  right: 50%;
-  bottom: 0;
+  // height: 100%; //設了會容易爆版蓋掉 carousel dot
 }
 
+// Carousel info p
+.indexCarousel .CarouselItem .MuiPaper-root p::before {
+  content: '';
+  position: absolute;
+  width: 53rem;
+  height: 13rem;
+  border-radius: 0 10px 10px 0;
+  background-color: rgba($color: #232d2f, $alpha: 0.1);
+  -webkit-backdrop-filter: blur(1px);
+  backdrop-filter: blur(1px);
+  z-index: -1;
+}
+.indexCarousel .CarouselItem .MuiPaper-root p {
+  width: 53rem;
+  height: 13rem;
+  background-color: rgba($color: #232d2f, $alpha: 0.2);
+  border-radius: 0 10px 10px 0;
+  position: absolute;
+  top: 70%;
+  z-index: 1;
+  color: #f8f8f8;
+  font-size: 3.5rem;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.5;
+  letter-spacing: normal;
+  text-align: left;
+}
+
+// Carousel Btn
+.indexCarousel .CarouselItem .MuiPaper-root button {
+  width: 32.938rem;
+  height: 7.188rem;
+  border-radius: 58px;
+  background-color: #f8f8f8;
+  position: absolute;
+  bottom: 3rem;
+  right: 8rem;
+  z-index: 10;
+}
+
+// .indexCarousel .CarouselItem .MuiPaper-root button::after {
+//   content: '';
+//   position: absolute;
+//   z-index: -1;
+//   width: 32.938rem;
+//   height: 7.188rem;
+//   border-radius: 58px;
+//   background-color: red;
+//   left: -2%;
+//   bottom: -5%;
+// }
+.indexCarousel
+  .CarouselItem
+  .MuiPaper-root
+  .MuiButtonBase-root
+  .MuiButton-label {
+  font-size: 3rem;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.5;
+  letter-spacing: normal;
+}
+.indexCarousel .CarouselItem .MuiPaper-root .MuiButtonBase-root .clickLabel {
+  font-size: 1.25rem;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 0.9;
+  letter-spacing: 1px;
+  text-align: left;
+  color: #2690df;
+  position: absolute;
+  right: 10%;
+  top: 75%;
+}
+////////////////////////////////////Carosel END//////////////////////////////////////
+////////////////////////////////////InfoPage START//////////////////////////////////////
+.indexInfoPage {
+  width: 100%;
+  height: 92.875rem;
+  margin-top: 10rem;
+  margin-bottom: 10rem;
+  position: relative;
+}
+.indexInfoPage .infoPagePic1 {
+  width: 41.25rem;
+  height: 36.25rem;
+  position: absolute;
+  left: 15%;
+  top: 0;
+  z-index: 0;
+}
+.indexInfoPage .infoPagePic1::after {
+  content: '';
+  width: 41.5rem;
+  height: 36.188rem;
+  border-radius: 5px;
+  border: solid 1px #f8f8f8;
+  position: absolute;
+  left: 3%;
+  top: 5%;
+  z-index: 1;
+}
+// size 660*580
+.indexInfoPage .infoPagePic1 img {
+  border-radius: 5px;
+}
+.indexInfoPage .infoPagePic2 {
+  widows: 48.75rem;
+  height: 32.5rem;
+  position: absolute;
+  right: 10%;
+  bottom: 0;
+  z-index: 0;
+}
+.indexInfoPage .infoPagePic2::after {
+  content: '';
+  width: 48.75rem;
+  height: 32.75rem;
+  border-radius: 5px;
+  border: solid 1px #f8f8f8;
+  position: absolute;
+  right: 5%;
+  bottom: -7%;
+  z-index: -1;
+}
+
+// size 780*520
+.indexInfoPage .infoPagePic2 img {
+  border-radius: 5px;
+}
+.indexInfoPage .infoPageText1 {
+  width: 34.25rem;
+  height: 34.125rem;
+  border-radius: 5px;
+  border: solid 1px #1cace7;
+  background-color: rgba(28, 172, 231, 0.2);
+  position: absolute;
+  right: 10%;
+  top: 13%;
+}
+.indexInfoPage .infoPageText1 .infoPageTextBox {
+  padding: 20% 10% 10% 10%;
+}
+
+.indexInfoPage .infoPageText1 .infoPageTextBox .infoSubTitle {
+  font-size: 2.063rem;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 2.3;
+  letter-spacing: 1.65px;
+  text-align: left;
+  color: #f8f8f8;
+}
+.indexInfoPage .infoPageText1 .infoPageTextBox .infoTitle {
+  font-size: 3.125rem;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 2.3;
+  letter-spacing: 2.5px;
+  text-align: left;
+  color: #f8f8f8;
+}
+.indexInfoPage .infoPageText1 .infoPageTextBox .infoParagraph {
+  font-size: 1.125rem;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 2.22;
+  letter-spacing: 0.45px;
+  text-align: left;
+  color: rgba(255, 255, 255, 0.87);
+}
+
+.indexInfoPage .infoPageText2 {
+  width: 29.063rem;
+  height: 35.938rem;
+  border-radius: 5px;
+  border: solid 1px #ab4fed;
+  background-color: rgba(171, 79, 237, 0.2);
+  position: absolute;
+  left: 15%;
+  bottom: 12%;
+}
+.indexInfoPage .infoPageText2 .infoPageTextBox {
+  padding: 30% 10% 10% 10%;
+}
+
+.indexInfoPage .infoPageText2 .infoPageTextBox .infoSubTitle {
+  font-size: 2.063rem;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 2.3;
+  letter-spacing: 1.65px;
+  text-align: left;
+  color: #f8f8f8;
+}
+.indexInfoPage .infoPageText2 .infoPageTextBox .infoTitle {
+  font-size: 3.125rem;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 2.3;
+  letter-spacing: 2.5px;
+  text-align: left;
+  color: #f8f8f8;
+}
+.indexInfoPage .infoPageText2 .infoPageTextBox .infoParagraph {
+  font-size: 1.125rem;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 2.22;
+  letter-spacing: 0.45px;
+  text-align: left;
+  color: rgba(255, 255, 255, 0.87);
+}
+
+////////////////////////////////////InfoPage END//////////////////////////////////////
+////////////////////////////////////MSG BOARD START//////////////////////////////////////
 //msg Board
 .cmtArea {
   /* border: 1px solid black; */
@@ -506,3 +737,4 @@ main {
 .emptyReplyBox {
   margin-bottom: 3em;
 }
+////////////////////////////////////MSG END//////////////////////////////////////
