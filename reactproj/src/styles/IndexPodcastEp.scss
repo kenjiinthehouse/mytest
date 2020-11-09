@@ -15,8 +15,21 @@ $card-hover-offset-y: 60px;
   margin-top: 5rem;
   margin-bottom: 5rem;
   // background-color: #ccc;
+  position: relative;
+  z-index: 1;
 }
 
+.card-movie-container .EpColorCard {
+  width: 100%;
+  height: 50rem;
+  background-color: #909393;
+  border: solid 1px #707070;
+  position: absolute;
+  left: 0;
+  top: 15%;
+  z-index: 0;
+  transform: skewY(5deg);
+}
 *,
 *:before,
 *:after {
@@ -40,8 +53,9 @@ $card-hover-offset-y: 60px;
   height: 4rem;
   border-radius: 5px;
   background-color: #2690df;
-  // position: absolute;
+  position: relative;
   margin-left: 13.375rem;
+  z-index: 2;
 }
 .IndexChannelEpTitleBox .IndexChannelEpTitle {
   padding: 0px;

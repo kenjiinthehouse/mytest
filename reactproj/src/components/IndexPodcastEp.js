@@ -291,13 +291,15 @@ function IndexPodcastEp(props) {
             {/* <!-- /.card-movie-navigation__list --> */}
 
             <Button className=" d-flex mt-2 mx-auto">
-                  更多優質內容
-            <BiFastForward />
+              更多優質內容
+              <BiFastForward />
             </Button>
           </div>
           {/* <!-- /.card-movie-navigation --> */}
         </div>
         {/* <!-- /.card-movie-wrapper --> */}
+
+        <div className="EpColorCard"></div>
       </div>
     </>
   );
