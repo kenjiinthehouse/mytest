@@ -13,7 +13,7 @@ $card-hover-offset-y: 60px;
   width: 100%;
   height: 36.5rem;
   margin-top: 5rem;
-  margin-bottom: 5rem;
+  margin-bottom: 15rem;
   // background-color: #ccc;
   position: relative;
   z-index: 1;
@@ -21,9 +21,10 @@ $card-hover-offset-y: 60px;
 
 .card-movie-container .EpColorCard {
   width: 100%;
-  height: 50rem;
+  height: 30rem;
   background-color: #909393;
   border: solid 1px #707070;
+  opacity: 0.2;
   position: absolute;
   left: 0;
   top: 15%;
