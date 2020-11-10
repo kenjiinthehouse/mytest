@@ -13,7 +13,7 @@ $card-hover-offset-y: 60px;
   width: 100%;
   height: 36.5rem;
   margin-top: 5rem;
-  margin-bottom: 5rem;
+  margin-bottom: 15rem;
   // background-color: #ccc;
   position: relative;
   z-index: 1;
@@ -21,9 +21,10 @@ $card-hover-offset-y: 60px;
 
 .card-movie-container .EpColorCard {
   width: 100%;
-  height: 50rem;
+  height: 30rem;
   background-color: #909393;
   border: solid 1px #707070;
+  opacity: 0.2;
   position: absolute;
   left: 0;
   top: 15%;
@@ -61,15 +62,14 @@ $card-hover-offset-y: 60px;
   padding: 0px;
   margin: 0px;
   width: 9.75rem;
-  height: 3.563rem;
-  font-family: NotoSansTC;
-  font-size: 2.438rem;
+  // height: 3.563rem;
+  font-size: 2rem;
   font-weight: 500;
   font-stretch: normal;
   font-style: normal;
-  line-height: 1.46;
+  line-height: 2rem;
   letter-spacing: normal;
-  text-align: left;
+  text-align: center;
   color: #ffffff;
 }
 

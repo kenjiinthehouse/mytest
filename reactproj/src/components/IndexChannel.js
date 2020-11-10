@@ -62,7 +62,9 @@ function IndexChannel(props) {
     <>
       <div className="IndexChannelContainer">
         <div className="IndexChannelPageTitleBox d-flex">
-          <h3 className="IndexChannelPageTitle mx-auto my-auto">熱門分類</h3>
+          <h3 className="IndexChannelPageTitle mx-auto my-auto">
+            熱門分類
+          </h3>
         </div>
         <div className="IndexChannelPageBox d-flex">
           <div className="IndexChannelPageBoxCate flex-column">
