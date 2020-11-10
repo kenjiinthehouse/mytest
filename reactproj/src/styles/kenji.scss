@@ -220,7 +220,7 @@ main {
 .indexCarousel {
   width: 101rem;
   margin-top: 2rem;
-  margin-bottom: 4rem;
+  margin-bottom: 2rem;
   z-index: 1;
 }
 .indexColorCard {
@@ -232,6 +232,7 @@ main {
   top: 15%;
   z-index: 0;
   transform: skewY(5deg);
+  background-attachment: fixed;
 }
 
 // Carousel card

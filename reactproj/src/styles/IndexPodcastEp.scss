@@ -30,6 +30,7 @@ $card-hover-offset-y: 60px;
   top: 15%;
   z-index: 0;
   transform: skewY(5deg);
+  background-attachment: fixed;
 }
 *,
 *:before,
@@ -50,7 +51,7 @@ $card-hover-offset-y: 60px;
 // %clearfix
 
 .IndexChannelEpTitleBox {
-  width: 23.875rem;
+  width: 24rem;
   height: 4rem;
   border-radius: 5px;
   background-color: #2690df;

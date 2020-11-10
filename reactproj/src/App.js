@@ -19,6 +19,7 @@ import IndexInfo from './components/IndexInfo';
 import IndexPodcastEp from './components/IndexPodcastEp';
 import IndexChannel from './components/IndexChannel';
 import IndexShop from './components/IndexShop';
+import ArticleCarousel from './components/ArticleCarousel';
 
 
 const { Header, Footer, Sider, Content } = Layout;
@@ -36,6 +37,7 @@ function App() {
               <IndexChannel />
               <IndexPodcastEp />
               <IndexShop />
+              <ArticleCarousel />
               {/* <MsgBoard /> */}
             </Route>
           </Switch>
