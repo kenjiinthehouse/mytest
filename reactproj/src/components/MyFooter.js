@@ -44,7 +44,7 @@ function MyFooter(props) {
         </div>
       </div>
       <div className="container-fluid">
-        <div className="footerBar row">
+        <div className="footerBar row no-gutters">
           <div className="soundarInfo col-3">
             <div className="footerLogo"></div>
             <ul className="footerUl">

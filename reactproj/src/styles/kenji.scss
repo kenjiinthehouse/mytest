@@ -21,9 +21,8 @@ html body {
   background: rgba($color: #232d2f, $alpha: 0.95);
   min-width: 100%;
   min-height: 3rem;
+  // padding: 0px;
   border-bottom: 1px solid rgba($color: #f8f8f8, $alpha: 0.1);
-}
-.ant-layout-header {
   position: fixed;
   z-index: 10;
 }
@@ -221,7 +220,7 @@ main {
 .indexCarousel {
   width: 101rem;
   margin-top: 2rem;
-  margin-bottom: 4rem;
+  margin-bottom: 2rem;
   z-index: 1;
 }
 .indexColorCard {
@@ -233,6 +232,7 @@ main {
   top: 15%;
   z-index: 0;
   transform: skewY(5deg);
+  background-attachment: fixed;
 }
 
 // Carousel card
