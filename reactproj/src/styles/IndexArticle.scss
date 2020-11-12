@@ -69,44 +69,58 @@
 }
 
 // Carousel info p
-.ArticleCarousel .CarouselItem .MuiPaper-root p::before {
-  content: '';
+.ArticleCarousel .CarouselItem .MuiPaper-root .articleInfoBox {
+  width: 25rem;
+  height: 21rem;
+  // background-color: rgba($color: #232d2f, $alpha: 1);
   position: absolute;
-  width: 53rem;
-  height: 13rem;
-  border-radius: 0 10px 10px 0;
-  background-color: rgba($color: #232d2f, $alpha: 0.1);
-  -webkit-backdrop-filter: blur(1px);
-  backdrop-filter: blur(1px);
-  z-index: -1;
-}
-.ArticleCarousel .CarouselItem .MuiPaper-root p {
-  width: 53rem;
-  height: 13rem;
-  background-color: rgba($color: #232d2f, $alpha: 0.2);
-  border-radius: 0 10px 10px 0;
-  position: absolute;
-  top: 70%;
+  top: 35%;
+  left: 5%;
   z-index: 1;
   color: #f8f8f8;
-  font-size: 3.5rem;
-  font-weight: 500;
+  text-overflow: ellipsis;
+}
+.ArticleCarousel .CarouselItem .MuiPaper-root .articleInfoBox .articleDiver {
+  border-top: #f8f8f8 1px solid;
+  margin: 1rem;
+}
+
+.ArticleCarousel .CarouselItem .MuiPaper-root .articleTitle {
+  color: #f8f8f8;
+}
+.ArticleCarousel .CarouselItem .MuiPaper-root .articleSubtitle {
+  color: #f8f8f8;
+}
+
+.ArticleCarousel .CarouselItem .MuiPaper-root p {
+  width: 85%;
+  font-size: 1rem;
+  font-weight: normal;
   font-stretch: normal;
   font-style: normal;
   line-height: 1.5;
-  letter-spacing: normal;
+  letter-spacing: 2px;
   text-align: left;
+  color: #f8f8f8;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 8;
+  -webkit-box-orient: vertical;
 }
 
 // Carousel Btn
 .ArticleCarousel .CarouselItem .MuiPaper-root button {
-  width: 32.938rem;
-  height: 7.188rem;
-  border-radius: 58px;
-  background-color: #f8f8f8;
+  // // width: 32.938rem;
+  // // height: 7.188rem;
+  // // border-radius: 58px;
+  // background-color: #f8f8f8;
   position: absolute;
-  bottom: 3rem;
-  right: 8rem;
+  right: 15%;
+  bottom: 0%;
+
   z-index: 10;
 }
 
@@ -115,12 +129,13 @@
   .MuiPaper-root
   .MuiButtonBase-root
   .MuiButton-label {
-  font-size: 3rem;
-  font-weight: 500;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: 1.5;
-  letter-spacing: normal;
+  color: #f8f8f8;
+  // font-size: 3rem;
+  // font-weight: 500;
+  // font-stretch: normal;
+  // font-style: normal;
+  // line-height: 1.5;
+  // letter-spacing: normal;
 }
 .ArticleCarousel .CarouselItem .MuiPaper-root .MuiButtonBase-root .clickLabel {
   font-size: 1.25rem;
@@ -143,11 +158,9 @@
   height: 100%;
 }
 .MuiPaper-root .ArticlePaperColorCard .slide__overlay {
-  position: absolute;
+  // position: absolute;
   bottom: 0;
   left: 0;
   height: 50%;
-  min-height: 700px;
-  fill: red;
-  opacity: 0.5;
+  min-height: 43.75rem;
 }

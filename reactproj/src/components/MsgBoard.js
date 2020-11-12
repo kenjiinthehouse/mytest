@@ -20,6 +20,7 @@ import { getMsg, getMsgAsync, getReply, getReplyAsync } from '../actions/index';
 import MsgInput from './MsgInput';
 import MsgReplyInput from './MsgReplyInput';
 import PaginationRounded from './PaginationRounded';
+import '../styles/MsgBoard.scss'
 
 function MsgBoard(props) {
   const { msg, reply } = props;

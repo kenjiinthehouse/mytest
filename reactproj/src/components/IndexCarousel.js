@@ -46,6 +46,7 @@ function IndexCarousel(props) {
       <Carousel
         className="indexCarousel mx-auto"
         autoPlay={false}
+        timeout={300}
         indicators={true}
         navButtonsAlwaysVisible={true}
       >
