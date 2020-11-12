@@ -1,4 +1,5 @@
 import React from 'react';
+import '../styles/IndexCarousel.scss';
 import Carousel from 'react-material-ui-carousel';
 import { Paper, Button } from '@material-ui/core';
 import IndexBailingguoNews from '../img/IndexBailingguoNews.jpg';
@@ -6,6 +7,7 @@ import IndexC2 from '../img/IndexC2.jpg';
 import IndexC3 from '../img/IndexC3.jpg';
 import IndexC4 from '../img/IndexC4.jpg';
 import IndexC5 from '../img/IndexC5.jpg';
+
 
 function IndexCarousel(props) {
   let items = [
