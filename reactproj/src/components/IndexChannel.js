@@ -20,6 +20,7 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
+import QueueAnim from 'rc-queue-anim';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -62,9 +63,7 @@ function IndexChannel(props) {
     <>
       <div className="IndexChannelContainer">
         <div className="IndexChannelPageTitleBox d-flex">
-          <h3 className="IndexChannelPageTitle mx-auto my-auto">
-            熱門分類
-          </h3>
+          <h3 className="IndexChannelPageTitle mx-auto my-auto">熱門分類</h3>
         </div>
         <div className="IndexChannelPageBox d-flex">
           <div className="IndexChannelPageBoxCate flex-column">
@@ -99,98 +98,111 @@ function IndexChannel(props) {
           </div>
           <div className="IndexChannelPageBoxContent d-flex">
             <img src={News} />
-            <div className="ChannelDrawer">
-              <div className="ChannelCard mx-auto">
-                <Card className={classes.root} data-cardId="1">
-                  <div className={classes.details}>
-                    <CardContent className={classes.content}>
-                      <Typography
-                        component="h5"
-                        variant="h5"
-                        className={classes.title}
-                      >
-                        Live From Space
-                      </Typography>
-                      <Typography
-                        variant="subtitle1"
-                        color="textSecondary"
-                        className={classes.text}
-                      >
-                        Mac Miller
-                      </Typography>
-                    </CardContent>
-                  </div>
-                  <CardMedia className={classes.cover} image={Cover} />
-                </Card>
-                <Card className={classes.root} data-cardId="2">
-                  <div className={classes.details}>
-                    <CardContent className={classes.content}>
-                      <Typography
-                        component="h5"
-                        variant="h5"
-                        className={classes.title}
-                      >
-                        Live From Space
-                      </Typography>
-                      <Typography
-                        variant="subtitle1"
-                        color="textSecondary"
-                        className={classes.text}
-                      >
-                        Mac Miller
-                      </Typography>
-                    </CardContent>
-                  </div>
-                  <CardMedia className={classes.cover} image={Cover} />
-                </Card>
-                <Card className={classes.root} data-cardId="3">
-                  <div className={classes.details}>
-                    <CardContent className={classes.content}>
-                      <Typography
-                        component="h5"
-                        variant="h5"
-                        className={classes.title}
-                      >
-                        Live From Space
-                      </Typography>
-                      <Typography
-                        variant="subtitle1"
-                        color="textSecondary"
-                        className={classes.text}
-                      >
-                        Mac Miller
-                      </Typography>
-                    </CardContent>
-                  </div>
-                  <CardMedia className={classes.cover} image={Cover} />
-                </Card>
-                <Card className={classes.root} data-cardId="4">
-                  <div className={classes.details}>
-                    <CardContent className={classes.content}>
-                      <Typography
-                        component="h5"
-                        variant="h5"
-                        className={classes.title}
-                      >
-                        Live From Space
-                      </Typography>
-                      <Typography
-                        variant="subtitle1"
-                        color="textSecondary"
-                        className={classes.text}
-                      >
-                        Mac Miller
-                      </Typography>
-                    </CardContent>
-                  </div>
-                  <CardMedia className={classes.cover} image={Cover} />
-                </Card>
-                <Button className=" d-flex mt-2 mx-auto">
-                  更多優質頻道
-                  <BiFastForward />
-                </Button>
+            <QueueAnim
+              delay={500}
+              type={['right', 'left']}
+              className="queue-simple"
+            >
+              <div className="ChannelDrawer" key="1">
+                <div className="ChannelCard mx-auto">
+                  <QueueAnim
+                    delay={500}
+                    interval={300}
+                    type={['right', 'left']}
+                    className="queue-simple"
+                  >
+                    <Card key="2" className={classes.root} data-cardId="1">
+                      <div className={classes.details}>
+                        <CardContent className={classes.content}>
+                          <Typography
+                            component="h5"
+                            variant="h5"
+                            className={classes.title}
+                          >
+                            Live From Space
+                          </Typography>
+                          <Typography
+                            variant="subtitle1"
+                            color="textSecondary"
+                            className={classes.text}
+                          >
+                            Mac Miller
+                          </Typography>
+                        </CardContent>
+                      </div>
+                      <CardMedia className={classes.cover} image={Cover} />
+                    </Card>
+                    <Card key="3" className={classes.root} data-cardId="2">
+                      <div className={classes.details}>
+                        <CardContent className={classes.content}>
+                          <Typography
+                            component="h5"
+                            variant="h5"
+                            className={classes.title}
+                          >
+                            Live From Space
+                          </Typography>
+                          <Typography
+                            variant="subtitle1"
+                            color="textSecondary"
+                            className={classes.text}
+                          >
+                            Mac Miller
+                          </Typography>
+                        </CardContent>
+                      </div>
+                      <CardMedia className={classes.cover} image={Cover} />
+                    </Card>
+                    <Card key="4" className={classes.root} data-cardId="3">
+                      <div className={classes.details}>
+                        <CardContent className={classes.content}>
+                          <Typography
+                            component="h5"
+                            variant="h5"
+                            className={classes.title}
+                          >
+                            Live From Space
+                          </Typography>
+                          <Typography
+                            variant="subtitle1"
+                            color="textSecondary"
+                            className={classes.text}
+                          >
+                            Mac Miller
+                          </Typography>
+                        </CardContent>
+                      </div>
+                      <CardMedia className={classes.cover} image={Cover} />
+                    </Card>
+                    <Card key="5" className={classes.root} data-cardId="4">
+                      <div className={classes.details}>
+                        <CardContent className={classes.content}>
+                          <Typography
+                            component="h5"
+                            variant="h5"
+                            className={classes.title}
+                          >
+                            Live From Space
+                          </Typography>
+                          <Typography
+                            variant="subtitle1"
+                            color="textSecondary"
+                            className={classes.text}
+                          >
+                            Mac Miller
+                          </Typography>
+                        </CardContent>
+                      </div>
+                      <CardMedia className={classes.cover} image={Cover} />
+                    </Card>
+                    <Button key="6" className=" d-flex mt-2 mx-auto">
+                      更多優質頻道
+                      <BiFastForward />
+                    </Button>
+                  </QueueAnim>
+                </div>
               </div>
-            </div>
+            </QueueAnim>
           </div>
         </div>
       </div>

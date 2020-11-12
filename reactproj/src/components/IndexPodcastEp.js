@@ -279,14 +279,14 @@ function IndexPodcastEp(props) {
             <ul className="card-movie-navigation__list" data-navigation>
               <li
                 className="is-active"
-                onClick={(e) => handleActiveDot(e)}
+                onMouseEnter={(e) => handleActiveDot(e)}
                 data-id="0"
               ></li>
-              <li onClick={(e) => handleActiveDot(e)} data-id="1"></li>
-              <li onClick={(e) => handleActiveDot(e)} data-id="2"></li>
-              <li onClick={(e) => handleActiveDot(e)} data-id="3"></li>
-              <li onClick={(e) => handleActiveDot(e)} data-id="4"></li>
-              <li onClick={(e) => handleActiveDot(e)} data-id="5"></li>
+              <li onMouseEnter={(e) => handleActiveDot(e)} data-id="1"></li>
+              <li onMouseEnter={(e) => handleActiveDot(e)} data-id="2"></li>
+              <li onMouseEnter={(e) => handleActiveDot(e)} data-id="3"></li>
+              <li onMouseEnter={(e) => handleActiveDot(e)} data-id="4"></li>
+              <li onMouseEnter={(e) => handleActiveDot(e)} data-id="5"></li>
             </ul>
             {/* <!-- /.card-movie-navigation__list --> */}
 
